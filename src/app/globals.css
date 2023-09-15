@@ -2,26 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.main {
+    @apply flex flex-col justify-center max-w-7xl pt-6 mx-auto sm:px-6 px-0;
+}
+.search_input {
+    @apply w-full block rounded-full border border-gray-400 border-solid focus:outline-none py-2 px-6 max-w-[600px]
+}
+.banner_layout {
+    @apply z-20 max-md:absolute text-white max-md:text-center flex flex-col justify-center items-start max-md:items-center gap-3 max-md:gap-1;
+}
+.banner {
+    @apply flex items-center justify-around my-6 px-2 md:px-32 bg-pastel_pink relative;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.dark_overlay {
+    @apply w-full h-full z-10 bg-black opacity-30 absolute;
 }
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.action_btn {
+    @apply px-4 py-2 mt-3 font-semibold bg-white text-blue-950 rounded-sm sm:hover:bg-blue-950 sm:hover:text-white active:bg-blue-950 active:text-white transition-colors;
 }
