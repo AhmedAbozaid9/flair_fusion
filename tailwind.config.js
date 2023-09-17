@@ -8,6 +8,9 @@ module.exports = {
   theme: {
 
     extend: {
+      transitionProperty: {
+        'height': 'height',
+      },
       colors : {
         pastel_red : "#E47676",
         pastel_pink: "#FFE5E5",

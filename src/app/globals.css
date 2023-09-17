@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 .main {
-    @apply flex flex-col justify-center max-w-7xl pt-6 mx-auto sm:px-6 px-0;
+    @apply flex flex-col justify-center max-w-7xl pt-2 sm:pt-4 mx-auto sm:px-6 px-0;
 }
 .search_input {
-    @apply w-full block rounded-full border border-gray-400 border-solid focus:outline-none py-2 px-6 max-w-[600px]
+    @apply w-full rounded-sm border border-gray-400 border-solid focus:outline-none py-2 px-6 pr-12
 }
 .banner_layout {
-    @apply z-20 max-md:absolute text-white max-md:text-center flex flex-col justify-center items-start max-md:items-center gap-3 max-md:gap-1;
+    @apply z-10 max-lg:absolute text-white max-lg:text-center flex flex-col justify-center items-start max-lg:items-center gap-3 max-lg:gap-1;
 }
 .banner {
-    @apply flex items-center justify-around my-6 px-2 md:px-32 bg-pastel_pink relative;
+    @apply flex items-center justify-around md:my-6 my-2 px-2 md:px-32 bg-pastel_pink relative max-h-96;
 }
 
 .dark_overlay {
@@ -20,4 +20,12 @@
 }
 .action_btn {
     @apply px-4 py-2 mt-3 font-semibold bg-white text-blue-950 rounded-sm sm:hover:bg-blue-950 sm:hover:text-white active:bg-blue-950 active:text-white transition-colors;
+}
+
+.mobile_menu {
+    @apply flex flex-col gap-3 absolute left-0 right-0 bg-white w-full z-20 overflow-hidden px-6
+}
+
+.desktop_nav_link {
+    @apply relative w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-blue-950 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center;
 }
