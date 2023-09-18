@@ -34,7 +34,7 @@ const Nav = () => {
   return (
     <motion.nav
       initial={{ y: 0 }}
-      animate={{ y: scrollingUp ? 0 : -370 }}
+      animate={{ y: scrollingUp ? 0 : -145 }}
       transition={{ duration: 0.3 }}
       className="sticky top-0 right-0 left-0 z-[999]"
     >
@@ -165,15 +165,19 @@ const Nav = () => {
             <Link
               href="hot-deals"
               className="font-semibold text-wild_red underline underline-offset-2"
-              onClick={() => {
-                setIsOpen(false);
-              }}
+              onClick={() => setIsOpen(false)}
             >
               Hot Deals
             </Link>
             <SearchField />
           </div>
         </motion.div>
+        {isOpen && (
+          <div
+            className="absolute w-screen h-screen z-10 top-0 right-0 left-0"
+            onClick={() => setIsOpen(false)}
+          />
+        )}
       </div>
     </motion.nav>
   );
