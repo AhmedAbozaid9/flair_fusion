@@ -21,6 +21,7 @@ const Nav = () => {
       const st = window.scrollY || document.documentElement.scrollTop;
 
       setScrollingUp(st < lastScrollTop);
+      setIsOpen(false);
       lastScrollTop = st <= 0 ? 0 : st;
     };
 
@@ -86,9 +87,9 @@ const Nav = () => {
         </div>
       </div>
       {/*mobile navigation*/}
-      <div className="bg-white max-md:flex hidden w-full relative py-1 z-[999]">
-        <div className="flex items-center justify-between w-full sm:mx-2">
-          <Link href="/" className="pr-4 z-30">
+      <div className=" max-md:flex hidden w-full relative ">
+        <div className="flex items-center justify-between w-full py-1 sm:mx-2 z-50 bg-white">
+          <Link href="/" className="z-30">
             <Image
               src={"assets/logo.svg"}
               alt="logo_image"
@@ -108,20 +109,22 @@ const Nav = () => {
         <motion.div
           className="absolute w-full"
           initial={{
+            y: -300,
             maxHeight: 0,
-            opacity: 0,
+            opacity: 0.5,
             paddingBottom: 0,
             marginTop: 0,
           }}
           animate={{
+            y: isOpen ? 0 : -300,
             maxHeight: isOpen ? "100%" : 0,
-            opacity: isOpen ? 1 : 0,
+            opacity: isOpen ? 1 : 0.5,
             marginTop: isOpen ? 50 : 0,
             paddingBottom: isOpen ? 16 : 0,
           }}
           transition={{ duration: 0.2 }}
         >
-          <div className="mobile_menu">
+          <div className={"mobile_menu"}>
             <Link
               href="/login"
               onClick={() => {
