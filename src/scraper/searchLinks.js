@@ -1,0 +1,111 @@
+const Searches = [
+  {
+    link: "https://eg.hm.com/en/shop-women/shop-product/dresses/--fit-slim_fit/",
+    category: "dress",
+    type: "trending",
+    gender: "women",
+  },
+  {
+    link: "https://eg.hm.com/en/shop-women/shop-product/dresses/--fit-regular_fit/",
+    category: "dress",
+    type: "new",
+    gender: "women",
+  },
+  {
+    link: "https://eg.hm.com/en/shop-women/shop-product/dresses/--fit-fitted/",
+    category: "dress",
+    type: "hot",
+    gender: "women",
+  },
+  {
+    link: "https://eg.hm.com/en/shop-women/shop-product/tops/--context-sport/",
+    category: "top",
+    type: "trending",
+    gender: "women",
+  },
+  {
+    link: "https://eg.hm.com/en/shop-women/shop-product/tops/--context-casual/",
+    category: "top",
+    type: "new",
+    gender: "women",
+  },
+  {
+    link: "https://eg.hm.com/en/shop-women/shop-product/tops/--context-party/",
+    category: "top",
+    type: "hot",
+    gender: "women",
+  },
+  {
+    link: "https://eg.hm.com/en/shop-women/shop-product/trousers/--clothing_style-straight_leg/",
+    category: "trousers",
+    type: "new",
+    gender: "women",
+  },
+  {
+    link: "https://eg.hm.com/en/shop-women/shop-product/trousers/--clothing_style-joggers_0/",
+    category: "trousers",
+    type: "trending",
+    gender: "women",
+  },
+  {
+    link: "https://eg.hm.com/en/shop-women/shop-product/trousers/--clothing_style-sweatpants_0/",
+    category: "trousers",
+    type: "hot",
+    gender: "women",
+  },
+  {
+    link: "https://eg.hm.com/en/shop-women/shop-product/skirts/--descriptive_length-regular_waist/",
+    category: "skirt",
+    type: "trending",
+    gender: "women",
+  },
+  {
+    link: "https://eg.hm.com/en/shop-women/shop-product/skirts/--descriptive_length-short/",
+    category: "skirt",
+    type: "hot",
+    gender: "women",
+  },
+  {
+    link: "https://eg.hm.com/en/shop-women/shop-product/skirts/--descriptive_length-high__waist/",
+    category: "skirt",
+    type: "new",
+    gender: "women",
+  },
+  {
+    link: "https://eg.hm.com/en/shop-men/shop-product/hoodies-sweatshirts/--clothing_style-hooded_jacket/",
+    category: "top",
+    type: "new",
+    gender: "men",
+  },
+  {
+    link: "https://eg.hm.com/en/shop-men/shop-product/hoodies-sweatshirts/--clothing_style-hoodie/",
+    category: "top",
+    type: "trending",
+    gender: "men",
+  },
+  {
+    link: "https://eg.hm.com/en/shop-men/shop-product/shirts/",
+    category: "top",
+    type: "hot",
+    gender: "men",
+  },
+  {
+    link: "https://eg.hm.com/en/shop-men/shop-product/trousers/",
+    category: "trousers",
+    type: "new",
+    gender: "men",
+  },
+  {
+    link: "https://eg.hm.com/en/shop-men/shop-product/jeans/--fit-regular_fit/",
+    category: "trousers",
+    type: "trending",
+    gender: "men",
+  },
+  {
+    link: "https://eg.hm.com/en/shop-men/shop-product/jeans/--fit-regular_fit-slim_fit/",
+    category: "trousers",
+    type: "hot",
+    gender: "men",
+  },
+];
+module.exports = { Searches };
