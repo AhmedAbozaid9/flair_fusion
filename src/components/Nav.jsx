@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -11,11 +11,34 @@ import SearchField from "@components/SearchField";
 import { Squash as Hamburger } from "hamburger-react";
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrollingUp, setScrollingUp] = useState(true);
+
+  useEffect(() => {
+    let lastScrollTop = 0;
+
+    const handleScroll = () => {
+      const st = window.pageYOffset || document.documentElement.scrollTop;
+
+      setScrollingUp(st < lastScrollTop);
+      lastScrollTop = st <= 0 ? 0 : st;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <nav>
+    <motion.nav
+      initial={{ y: 0 }}
+      animate={{ y: scrollingUp ? 0 : -145 }}
+      transition={{ duration: 0.3 }}
+      className=" sticky top-0 right-0 left-0 z-[999]"
+    >
       {/*desktop nav*/}
-      <div className="hidden md:flex justify-between flex-col">
+      <div className="w-full bg-white py-4 z-50 hidden md:flex justify-between flex-col sticky top-0 right-0 left-0">
         <div className="flex justify-between items-center">
           <Link href="/" className="pr-4">
             <Image
@@ -62,7 +85,7 @@ const Nav = () => {
         </div>
       </div>
       {/*mobile navigation*/}
-      <div className="max-md:flex hidden w-full">
+      <div className="bg-white max-md:flex hidden w-full py-1">
         <div className="flex items-center justify-between w-full sm:mx-2">
           <Link href="/" className="pr-4 z-30">
             <Image
@@ -108,7 +131,7 @@ const Nav = () => {
           <SearchField />
         </motion.div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

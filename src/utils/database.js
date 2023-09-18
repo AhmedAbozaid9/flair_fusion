@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 let isConnected = false;
 
 export const connectToDB = async () => {
@@ -10,7 +9,7 @@ export const connectToDB = async () => {
   }
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
-      dbName: "share_prompt",
+      dbName: "flair_fusion",
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
