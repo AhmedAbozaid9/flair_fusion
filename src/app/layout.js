@@ -4,13 +4,13 @@ import React from "react";
 
 export const metadata = {
   title: "Flair Fusion",
-  description: "The best shopping website",
+  description: "The best fashion website",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className="">
         <main className="main">
           <Nav />
           {children}

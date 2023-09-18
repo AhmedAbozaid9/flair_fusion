@@ -8,8 +8,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa";
 import SearchField from "@components/SearchField";
-import { Squash as Hamburger } from "hamburger-react";
-import { set } from "mongoose";
+import { Divide as Hamburger } from "hamburger-react";
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrollingUp, setScrollingUp] = useState(true);
@@ -36,7 +35,7 @@ const Nav = () => {
     <motion.nav
       initial={{ y: 0 }}
       animate={{ y: scrollingUp ? 0 : -145 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.4 }}
       className="sticky top-0 right-0 left-0 z-[999]"
     >
       {/*desktop nav*/}
@@ -109,16 +108,16 @@ const Nav = () => {
         <motion.div
           className="absolute w-full"
           initial={{
-            y: -300,
+            y: -320,
             maxHeight: 0,
-            opacity: 0.5,
+            opacity: 0,
             paddingBottom: 0,
             marginTop: 0,
           }}
           animate={{
-            y: isOpen ? 0 : -300,
+            y: isOpen ? 0 : -320,
             maxHeight: isOpen ? "100%" : 0,
-            opacity: isOpen ? 1 : 0.5,
+            opacity: isOpen ? 1 : 0,
             marginTop: isOpen ? 50 : 0,
             paddingBottom: isOpen ? 16 : 0,
           }}
