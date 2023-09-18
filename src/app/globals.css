@@ -22,7 +22,7 @@
     @apply relative flex flex-col justify-center max-w-[1500px] mx-auto sm:px-6 px-0
 }
 .search_input {
-    @apply w-full rounded-sm border border-gray-400 border-solid focus:outline-none py-2 px-6 pr-12
+    @apply w-full rounded-sm border border-gray-300 border-solid focus:outline-none py-2 px-6 pr-12
 }
 .banner_layout {
     @apply z-10 max-lg:absolute text-white max-lg:text-center flex flex-col justify-center items-start max-lg:items-center gap-3 max-lg:gap-1;
@@ -43,5 +43,5 @@
 }
 
 .desktop_nav_link {
-    @apply w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-blue-950 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center;
+    @apply relative w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-blue-950 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center;
 }

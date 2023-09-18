@@ -35,7 +35,7 @@ const Nav = () => {
     <motion.nav
       initial={{ y: 0 }}
       animate={{ y: scrollingUp ? 0 : -145 }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: 0.4, delay: 0.1 }}
       className="sticky top-0 right-0 left-0 z-[999]"
     >
       {/*desktop nav*/}
@@ -64,7 +64,7 @@ const Nav = () => {
             </Link>
           </div>
         </div>
-        <div className="my-4 w-full h-[0.5px] bg-gray-400" />
+        <div className="my-4 w-full h-[0.5px] bg-gray-300" />
         <div className="flex justify-between">
           <div className="flex gap-5">
             <Link href="/" className="desktop_nav_link">
