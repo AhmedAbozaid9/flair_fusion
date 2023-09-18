@@ -9,6 +9,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa";
 import SearchField from "@components/SearchField";
 import { Squash as Hamburger } from "hamburger-react";
+import { set } from "mongoose";
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrollingUp, setScrollingUp] = useState(true);
@@ -95,6 +96,9 @@ const Nav = () => {
               height={0}
               className="max-sm:mx-6"
               draggable={"false"}
+              onClick={() => {
+                setIsOpen(false);
+              }}
             />
           </Link>
           <span className="z-30">
@@ -118,14 +122,52 @@ const Nav = () => {
           transition={{ duration: 0.2 }}
         >
           <div className="mobile_menu">
-            <Link href="/login">Log In</Link>
-            <Link href="/cart">Shopping cart</Link>
-            <Link href="/favourties">Favourites</Link>
-            <Link href="/new-arrivals">New Arrivals</Link>
-            <Link href="trending">Trending</Link>
+            <Link
+              href="/login"
+              onClick={() => {
+                setIsOpen(false);
+              }}
+            >
+              Log In
+            </Link>
+            <Link
+              href="/cart"
+              onClick={() => {
+                setIsOpen(false);
+              }}
+            >
+              Shopping cart
+            </Link>
+            <Link
+              href="/favourties"
+              onClick={() => {
+                setIsOpen(false);
+              }}
+            >
+              Favourites
+            </Link>
+            <Link
+              href="/new-arrivals"
+              onClick={() => {
+                setIsOpen(false);
+              }}
+            >
+              New Arrivals
+            </Link>
+            <Link
+              href="trending"
+              onClick={() => {
+                setIsOpen(false);
+              }}
+            >
+              Trending
+            </Link>
             <Link
               href="hot-deals"
               className="font-semibold text-wild_red underline underline-offset-2"
+              onClick={() => {
+                setIsOpen(false);
+              }}
             >
               Hot Deals
             </Link>
