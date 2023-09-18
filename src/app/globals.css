@@ -23,7 +23,7 @@
 }
 
 .mobile_menu {
-    @apply flex flex-col gap-3 absolute left-0 right-0 bg-white w-full z-20 overflow-hidden px-6
+    @apply flex flex-col gap-3 absolute left-0 right-0 bg-white w-full h-fit z-50 px-6 py-4
 }
 
 .desktop_nav_link {

@@ -17,7 +17,7 @@ const Nav = () => {
     let lastScrollTop = 0;
 
     const handleScroll = () => {
-      const st = window.pageYOffset || document.documentElement.scrollTop;
+      const st = window.scrollY || document.documentElement.scrollTop;
 
       setScrollingUp(st < lastScrollTop);
       lastScrollTop = st <= 0 ? 0 : st;
@@ -33,9 +33,9 @@ const Nav = () => {
   return (
     <motion.nav
       initial={{ y: 0 }}
-      animate={{ y: scrollingUp ? 0 : -145 }}
+      animate={{ y: scrollingUp ? 0 : -370 }}
       transition={{ duration: 0.3 }}
-      className=" sticky top-0 right-0 left-0 z-[999]"
+      className="sticky top-0 right-0 left-0 z-[999]"
     >
       {/*desktop nav*/}
       <div className="w-full bg-white py-4 z-50 hidden md:flex justify-between flex-col sticky top-0 right-0 left-0">
@@ -85,7 +85,7 @@ const Nav = () => {
         </div>
       </div>
       {/*mobile navigation*/}
-      <div className="bg-white max-md:flex hidden w-full py-1">
+      <div className="bg-white max-md:flex hidden w-full relative py-1 z-[999]">
         <div className="flex items-center justify-between w-full sm:mx-2">
           <Link href="/" className="pr-4 z-30">
             <Image
@@ -102,33 +102,35 @@ const Nav = () => {
           </span>
         </div>
         <motion.div
-          className="mobile_menu"
+          className="absolute w-full"
           initial={{
             maxHeight: 0,
             opacity: 0,
-            paddingTop: 0,
             paddingBottom: 0,
+            marginTop: 0,
           }}
           animate={{
             maxHeight: isOpen ? "100%" : 0,
             opacity: isOpen ? 1 : 0,
-            paddingTop: isOpen ? 65 : 0,
+            marginTop: isOpen ? 50 : 0,
             paddingBottom: isOpen ? 16 : 0,
           }}
           transition={{ duration: 0.2 }}
         >
-          <Link href="/login">Log In</Link>
-          <Link href="/cart">Shopping cart</Link>
-          <Link href="/favourties">Favourites</Link>
-          <Link href="/new-arrivals">New Arrivals</Link>
-          <Link href="trending">Trending</Link>
-          <Link
-            href="hot-deals"
-            className="font-semibold text-wild_red underline underline-offset-2"
-          >
-            Hot Deals
-          </Link>
-          <SearchField />
+          <div className="mobile_menu">
+            <Link href="/login">Log In</Link>
+            <Link href="/cart">Shopping cart</Link>
+            <Link href="/favourties">Favourites</Link>
+            <Link href="/new-arrivals">New Arrivals</Link>
+            <Link href="trending">Trending</Link>
+            <Link
+              href="hot-deals"
+              className="font-semibold text-wild_red underline underline-offset-2"
+            >
+              Hot Deals
+            </Link>
+            <SearchField />
+          </div>
         </motion.div>
       </div>
     </motion.nav>
