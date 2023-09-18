@@ -7,24 +7,49 @@ const puppeteer = require("puppeteer");
 const { readFile, writeFile } = require("fs");
 require("events").EventEmitter.defaultMaxListeners = 30;
 
-const getProductDataHM = async (links, category, type, gender) => {
-  const data = [];
-  for (const link of links) {
-    const idx = links.indexOf(link);
-    const browser = await puppeteer.launch({
-      headless: "true",
-      maxConcurrency: 5,
-      timeout: 0,
-    });
-    const page = await browser.newPage();
-    await page.setDefaultNavigationTimeout(1200000);
-    await page.goto(link);
+const { Searches } = require("./searchLinks");
 
-    await page.waitForSelector("h1", { timeout: 60000 });
-    await page.waitForSelector(".description-first", { timeout: 60000 });
-    await page.waitForSelector(".price-amount", { timeout: 60000 });
+let counter = 1;
+const getProductDataHM = async (link, category, type, gender) => {
+  const browser = await puppeteer.launch({
+    headless: "true",
+    maxConcurrency: 5,
+    timeout: 0,
+    protocolTimeout: 0,
+  });
+  const page = await browser.newPage();
+  await page.setDefaultNavigationTimeout(0);
+  await page.goto(link, { waitUntil: "networkidle2", timeout: 0 });
+  // now we're on products page, we want to enter the website of each product, take the data, then go back
+  //the links
+  await page.waitForSelector(".product-selected-url", { timeout: 0 });
+
+  const productsLinks = await page.evaluate(() => {
+    let links = Array.from(
+      document.querySelectorAll(".product-selected-url"),
+    ).map((link) => link.href);
+    return [...new Set(links)];
+  });
+  for (const productLink of productsLinks) {
+    let retries = 5;
+    while (retries > 0) {
+      try {
+        await page.goto(productLink, {
+          waitUntil: "networkidle2",
+          timeout: 0,
+        });
+        break; // Break out of loop if successful
+      } catch (error) {
+        console.error("Error:", error);
+        retries--;
+      }
+    }
+
+    await page.waitForSelector("h1", { timeout: 0 });
+    await page.waitForSelector(".description-first", { timeout: 0 });
+    await page.waitForSelector(".price-amount", { timeout: 0 });
     await page.waitForSelector(".pdp-image-zoom-wrapper img", {
-      timeout: 60000,
+      timeout: 0,
       visible: true,
     });
 
@@ -44,10 +69,8 @@ const getProductDataHM = async (links, category, type, gender) => {
         images,
       };
     });
-    data.push({ category, type, gender, ...item });
-    console.log(category, type, idx);
-    await browser.close();
-    readFile("data.json", "utf-8", (err, prevData) => {
+    const data = { category, type, gender, ...item };
+    readFile("./data.json", "utf-8", (err, prevData) => {
       if (err) {
         console.log(err);
         return;
@@ -55,29 +78,22 @@ const getProductDataHM = async (links, category, type, gender) => {
       try {
         const existingData = JSON.parse(prevData);
         existingData.push(data);
-        writeFile("data.json", JSON.stringify(existingData), (e) => {
+        console.log(`saved ${counter++} data item`);
+        writeFile("./data.json", JSON.stringify(existingData), (e) => {
           if (e) console.log(e);
-          console.log("saved the data");
         });
       } catch (err) {
         console.log(err);
       }
     });
   }
+  await page.close();
 };
 
-//get the links
-readFile("links.json", "utf8", (err, data) => {
-  if (err) {
-    console.error("Error reading the file:", err);
-    return;
-  }
-  try {
-    const links = JSON.parse(data);
-    links.forEach(({ category, type, gender, links }) => {
-      getProductDataHM(links.links, category, type, gender);
-    });
-  } catch (err) {
-    console.log(err);
-  }
-});
+try {
+  Searches.forEach(({ category, type, gender, link }) => {
+    getProductDataHM(link, category, type, gender).then(() => {});
+  });
+} catch (err) {
+  console.log(err);
+}
