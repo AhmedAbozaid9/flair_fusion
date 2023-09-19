@@ -1,7 +1,7 @@
-import Image from "next/image";
 import HomeCard from "@components/HomeCard";
 import homeCards from "@constants/HomeCards";
 import Banner from "@components/Banner";
+import ProductsCarousel from "@components/ProductsCarousel";
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
             <HomeCard key={card.id} title={card.title} bg={card.bg} />
           ))}
         </div>
-        <div className="w-full h-screen"></div>
+        <ProductsCarousel />
       </main>
     </>
   );

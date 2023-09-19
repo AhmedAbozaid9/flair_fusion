@@ -37,3 +37,5 @@ next-env.d.ts
 # scraper
 ./src/scraper/scrapedData.json
 .vercel
+src/scraper/data.json
+src/scraper/dataFinal.json
