@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function ProductCard({ title, price, images }) {
   return (
-    <div className="cursor-pointer flex flex-col gap-2 sm:mx-6 mx-4 items-center justify-center border-gray-200">
+    <div className="cursor-pointer flex flex-col gap-2 mx-3 sm:mx-4 items-center justify-center border-gray-200">
       <div className="relative w-36 h-40 sm:w-56 sm:h-72">
         <Image
           src={images[0]}
