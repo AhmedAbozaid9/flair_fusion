@@ -36,7 +36,7 @@ const Nav = () => {
       initial={{ y: 0 }}
       animate={{ y: scrollingUp ? 0 : -145 }}
       transition={{ duration: 0.4, delay: 0.1 }}
-      className="sticky top-0 right-0 left-0 z-[999]"
+      className="sticky top-0 right-0 left-0 z-[999] border-b-1"
     >
       {/*desktop nav*/}
       <div className="w-full bg-white py-4 z-50 hidden md:flex justify-between flex-col sticky top-0 right-0 left-0">

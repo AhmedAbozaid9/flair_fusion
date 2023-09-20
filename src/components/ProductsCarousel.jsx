@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import ProductCard from "./ProductCard";
 
 const ProductsCarousel = () => {
   const [products, setProducts] = useState([]);
@@ -12,7 +13,13 @@ const ProductsCarousel = () => {
     })();
   }, []);
   console.log(products);
-  return <div>Carousel !</div>;
+  return (
+    <div className="flex flex-wrap gap-5 items-center justify-center">
+      {products.map((product) => (
+        <ProductCard key={product._id} {...product} />
+      ))}
+    </div>
+  );
 };
 
 export default ProductsCarousel;
