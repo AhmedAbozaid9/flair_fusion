@@ -1,6 +1,7 @@
 import "./globals.css";
 import Nav from "@/components/Nav";
 import React from "react";
+import {Montserrat} from "next/font/google"
 
 export const metadata = {
   title: "Flair Fusion",
@@ -10,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="">
+      <body style={{fontFamily:'Montserrat'}}>
         <main className="main">
           <Nav />
           {children}
