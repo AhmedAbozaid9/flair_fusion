@@ -14,7 +14,9 @@ export default function Home() {
                    <HomeCard key={card.id} title={card.title} bg={card.bg} />
                ))}
            </div>
-           <ProductsCarousel title={"Trending"} link={'/trending'} />
+           <ProductsCarousel title={"New"} link={'new'} />
+           <ProductsCarousel title={"Trending"} link={'trending'} />
+           <ProductsCarousel title={"Hot Deals"} link={'hot'} />
        </div>
       </main>
     </>

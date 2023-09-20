@@ -21,7 +21,7 @@ const Nav = () => {
 
       setScrollingUp(st < lastScrollTop);
       setIsOpen(false);
-      lastScrollTop = st <= 0 ? 0 : st;
+      lastScrollTop = st <= 125 ? 125 : st;
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -35,7 +35,7 @@ const Nav = () => {
     <motion.nav
       initial={{ y: 0 }}
       animate={{ y: scrollingUp ? 0 : -145 }}
-      transition={{ duration: 0.4, delay: 0.1 }}
+      transition={{ duration: 0.3 }}
       className="sticky top-0 right-0 left-0 z-[999] border-b-1"
     >
       {/*desktop nav*/}

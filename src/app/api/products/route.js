@@ -9,12 +9,14 @@ export const GET = async (req) => {
   const searchParams = new URLSearchParams(url.search);
 
   const page = parseInt(searchParams.get("page"));
+  const type = searchParams.get("type")
 
   try {
     await connectToDB();
     const startIndex = (page - 1) * itemsPerPage;
+    console.log(type)
 
-    const products = await Product.find({})
+    const products = await Product.find(type?{type}:{})
       .skip(startIndex)
       .limit(itemsPerPage);
     return new Response(JSON.stringify(products), { status: 200 });
