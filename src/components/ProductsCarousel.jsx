@@ -20,7 +20,6 @@ const ProductsCarousel = ({title,link}) => {
       setProducts(response.data);
     })();
   }, []);
-    console.log(products)
   return (
       <div className="w-full max-w-7xl mx-auto my-6 md:my-16">
         <div className="flex justify-between items-center pb-3 mb-6 border-b-2">

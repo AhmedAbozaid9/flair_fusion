@@ -21,7 +21,7 @@ const Nav = () => {
 
       setScrollingUp(st < lastScrollTop);
       setIsOpen(false);
-      lastScrollTop = st <= 125 ? 125 : st;
+      lastScrollTop = st <= 115 ? 115 : st;
     };
 
     window.addEventListener("scroll", handleScroll);
