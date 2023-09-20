@@ -8,12 +8,14 @@ export default function Home() {
     <>
       <Banner />
       <main className="bg-white z-50">
-        <div className="flex gap-5 flex-col sm:flex-row items-center justify-around max-w-7xl mx-auto my-5 md:my-6">
-          {homeCards.map((card) => (
-            <HomeCard key={card.id} title={card.title} bg={card.bg} />
-          ))}
-        </div>
-        <ProductsCarousel />
+       <div className="max-w-7xl mx-auto max-sm:px-4">
+           <div className="flex gap-5 flex-col sm:flex-row items-center justify-between mx-auto my-6 md:my-16">
+               {homeCards.map((card) => (
+                   <HomeCard key={card.id} title={card.title} bg={card.bg} />
+               ))}
+           </div>
+           <ProductsCarousel title={"Trending"} link={'/trending'} />
+       </div>
       </main>
     </>
   );
