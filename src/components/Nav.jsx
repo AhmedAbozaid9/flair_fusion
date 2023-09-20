@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { Dancing_Script } from "next/font/google";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -9,6 +10,9 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa";
 import SearchField from "@components/SearchField";
 import { Divide as Hamburger } from "hamburger-react";
+
+const dancing_script = Dancing_Script({ weight: "400", subsets: ["latin"] });
+
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrollingUp, setScrollingUp] = useState(true);
@@ -36,20 +40,17 @@ const Nav = () => {
       initial={{ y: 0 }}
       animate={{ y: scrollingUp ? 0 : -145 }}
       transition={{ duration: 0.3 }}
-      className="sticky top-0 right-0 left-0 z-[999] border-b-1"
+      className="sticky top-0 right-0 left-0 z-[999] border-b-1 bg-white"
     >
       {/*desktop nav*/}
       <div className="w-full bg-white py-4 z-50 hidden md:flex justify-between flex-col sticky top-0 right-0 left-0">
         <div className="flex justify-between items-center">
           <Link href="/" className="pr-4">
-            <Image
-              src={"assets/logo.svg"}
-              alt="logo_image"
-              width={80}
-              height={50}
-              className="mr-2"
-              draggable={"false"}
-            />
+            <h1
+              className={`whitespace-nowrap text-2xl ${dancing_script.className}`}
+            >
+              Flair Fusion
+            </h1>
           </Link>
           <SearchField />
           <div className="flex gap-5 items-center pl-4">
@@ -88,22 +89,25 @@ const Nav = () => {
       {/*mobile navigation*/}
       <div className=" max-md:flex hidden w-full relative ">
         <div className="flex items-center justify-between w-full py-1 sm:mx-2 z-50 bg-white">
-          <Link href="/" className="z-30">
-            <Image
-              src={"assets/logo.svg"}
-              alt="logo_image"
-              width={65}
-              height={0}
-              className="max-sm:mx-6"
-              draggable={"false"}
-              onClick={() => {
-                setIsOpen(false);
-              }}
-            />
-          </Link>
-          <span className="z-30">
+          <span className="flex-1">
             <Hamburger toggled={isOpen} toggle={setIsOpen} color={"#E47676"} />
           </span>
+          <h1
+            className={`w-full text-center flex-1 text-xl ${dancing_script.className}`}
+          >
+            Flair Fusion
+          </h1>
+          <div className="flex gap-3 items-center justify-end pr-2 flex-1">
+            <Link href="/cart">
+              <AiOutlineShoppingCart size={22} />
+            </Link>
+            <Link href="/favourties">
+              <AiOutlineHeart size={22} />
+            </Link>
+            <Link href="/login">
+              <FaUserCircle size={22} />
+            </Link>
+          </div>
         </div>
         <motion.div
           className="absolute w-full"
@@ -138,7 +142,15 @@ const Nav = () => {
                 setIsOpen(false);
               }}
             >
-              Shopping cart
+              Shopping Cart
+            </Link>
+            <Link
+              href="/all-products"
+              onClick={() => {
+                setIsOpen(false);
+              }}
+            >
+              All Products
             </Link>
             <Link
               href="/favourties"
