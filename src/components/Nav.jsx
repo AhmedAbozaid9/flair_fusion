@@ -131,7 +131,7 @@ const Nav = () => {
         >
           <div className={"mobile_menu"}>
             <Link
-              href="/all-products"
+              href="all-fashion"
               onClick={() => {
                 setIsOpen(false);
               }}
