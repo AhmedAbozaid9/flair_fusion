@@ -68,7 +68,7 @@ const Nav = () => {
         <div className="my-4 w-full h-[0.5px] bg-gray-300" />
         <div className="flex justify-between">
           <div className="flex gap-5">
-            <Link href="/" className="desktop_nav_link">
+            <Link href="all-fashion" className="desktop_nav_link">
               All Fashion
             </Link>
             <Link href="/new-arrivals" className="desktop_nav_link">
@@ -92,11 +92,13 @@ const Nav = () => {
           <span className="flex-1">
             <Hamburger toggled={isOpen} toggle={setIsOpen} color={"#E47676"} />
           </span>
-          <h1
-            className={`w-full text-center flex-1 text-xl ${dancing_script.className}`}
-          >
-            Flair Fusion
-          </h1>
+          <Link href="/">
+            <h1
+              className={`w-full text-center flex-1 text-xl ${dancing_script.className}`}
+            >
+              Flair Fusion
+            </h1>
+          </Link>
           <div className="flex gap-3 items-center justify-end pr-2 flex-1">
             <Link href="/cart">
               <AiOutlineShoppingCart size={22} />

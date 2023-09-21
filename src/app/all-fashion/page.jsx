@@ -1,8 +1,8 @@
 import ProductsBrowser from "@components/products/ProductsBrowser";
 import React from "react";
 
-const Page = () => {
-  return <ProductsBrowser type="new" />;
+const page = () => {
+  return <ProductsBrowser type="" />;
 };
 
-export default Page;
+export default page;

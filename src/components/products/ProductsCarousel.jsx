@@ -6,23 +6,25 @@ import ProductCard from "./ProductCard";
 import Link from "next/link";
 import axios from "axios";
 
-const ProductsCarousel = ({ title, link }) => {
+const ProductsCarousel = ({ type }) => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     (async () => {
-      const response = await axios.get("api/products", {
+      const { data } = await axios.get("api/products", {
         params: {
-          type: link,
+          type,
         },
       });
-      setProducts(response.data);
+      setProducts(data.products);
     })();
   }, []);
   return (
-    <div className="w-full max-w-7xl mx-auto my-6 md:my-16">
+    <div className="w-full mx-auto my-6 md:my-16">
       <div className="flex justify-between items-center pb-3 mb-6 border-b-2">
-        <h3 className="text-2xl font-bold text-blue-950">{title}</h3>
-        <Link href={link} className="text-pastel_red">
+        <h3 className="text-xl sm:text-2xl font-bold text-blue-950">
+          {type.charAt(0).toUpperCase() + type.slice(1)}
+        </h3>
+        <Link href={type} className="text-pastel_red">
           See more
         </Link>
       </div>
@@ -38,7 +40,9 @@ const ProductsCarousel = ({ title, link }) => {
       >
         {products.map((product) => (
           <SplideSlide key={product._id}>
-            <ProductCard {...product} />
+            <div className="sm:px-4 px-2">
+              <ProductCard {...product} />
+            </div>
           </SplideSlide>
         ))}
       </Splide>
