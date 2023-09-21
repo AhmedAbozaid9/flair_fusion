@@ -129,36 +129,12 @@ const Nav = () => {
         >
           <div className={"mobile_menu"}>
             <Link
-              href="/login"
-              onClick={() => {
-                setIsOpen(false);
-              }}
-            >
-              Log In
-            </Link>
-            <Link
-              href="/cart"
-              onClick={() => {
-                setIsOpen(false);
-              }}
-            >
-              Shopping Cart
-            </Link>
-            <Link
               href="/all-products"
               onClick={() => {
                 setIsOpen(false);
               }}
             >
               All Products
-            </Link>
-            <Link
-              href="/favourties"
-              onClick={() => {
-                setIsOpen(false);
-              }}
-            >
-              Favourites
             </Link>
             <Link
               href="/new-arrivals"
