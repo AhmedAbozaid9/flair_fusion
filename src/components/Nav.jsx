@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Dancing_Script } from "next/font/google";
-import Image from "next/image";
 import { motion } from "framer-motion";
 
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -25,7 +24,7 @@ const Nav = () => {
 
       setScrollingUp(st < lastScrollTop);
       setIsOpen(false);
-      lastScrollTop = st <= 115 ? 115 : st;
+      lastScrollTop = st <= 125 ? 125 : st;
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -92,7 +91,7 @@ const Nav = () => {
           <span className="flex-1">
             <Hamburger toggled={isOpen} toggle={setIsOpen} color={"#E47676"} />
           </span>
-          <Link href="/">
+          <Link href="/" onClick={() => setIsOpen(false)}>
             <h1
               className={`w-full text-center flex-1 text-xl ${dancing_script.className}`}
             >

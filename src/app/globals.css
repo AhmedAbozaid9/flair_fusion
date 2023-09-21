@@ -2,46 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .men_card_bg {
-    background-image: url('../../public/assets/homeCards/men.jpg');
-    background-position: center center;
-    background-size: cover;
+  background-image: url("../../public/assets/homeCards/men.jpg");
+  background-position: center center;
+  background-size: cover;
 }
 .women_card_bg {
-    background-image: url("../../public/assets/homeCards/women.jpg");
-    background-position: center center;
-    background-size: cover;
+  background-image: url("../../public/assets/homeCards/women.jpg");
+  background-position: center center;
+  background-size: cover;
 }
 .trending_card_bg {
-    background-image: url("../../public/assets/homeCards/trending.jpg");
-    background-position: center center;
-    background-size: cover;
+  background-image: url("../../public/assets/homeCards/trending.jpg");
+  background-position: center center;
+  background-size: cover;
 }
 
 .main {
-    @apply relative flex flex-col justify-center max-w-[1500px] mx-auto sm:px-6 px-0
+  @apply relative flex flex-col justify-center max-w-[1500px] mx-auto sm:px-6 px-0;
 }
 .search_input {
-    @apply w-full rounded-sm border border-gray-300 border-solid focus:outline-none py-2 px-6 pr-12
+  @apply w-full rounded-sm border border-gray-300 border-solid focus:outline-none py-2 px-6 pr-12;
 }
 .banner_layout {
-    @apply z-10 max-lg:absolute text-white max-lg:text-center flex flex-col justify-center items-start max-lg:items-center gap-3 max-lg:gap-1;
+  @apply z-10 max-lg:absolute text-white max-lg:text-center flex flex-col justify-center items-start max-lg:items-center gap-3 max-lg:gap-1;
 }
 .banner {
-    @apply sticky top-0 flex items-center justify-around px-2 md:px-32  bg-pastel_pink max-h-96;
+  @apply sticky top-0 flex items-center justify-around px-2 md:px-32  bg-pastel_pink max-h-96;
 }
 
 .dark_overlay {
-    @apply w-full h-full z-10 bg-black opacity-30 absolute;
+  @apply w-full h-full z-10 bg-black opacity-30 absolute;
 }
 .action_btn {
-    @apply px-4 py-2 mt-3 font-semibold bg-white text-blue-950 rounded-sm sm:hover:bg-blue-950 sm:hover:text-white active:bg-blue-950 active:text-white transition-colors;
+  @apply px-4 py-2 mt-3 font-semibold bg-white text-blue-950 rounded-sm sm:hover:bg-blue-950 sm:hover:text-white active:bg-blue-950 active:text-white transition-colors;
 }
 
 .mobile_menu {
-    @apply overflow-x-hidden flex flex-col gap-3 absolute left-0 right-0 bg-white w-full h-fit z-40 px-6 py-4
+  @apply overflow-x-hidden flex flex-col gap-3 absolute left-0 right-0 bg-white w-full h-fit z-40 px-6 py-4;
 }
 
 .desktop_nav_link {
-    @apply relative w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-blue-950 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center;
+  @apply relative w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-blue-950 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center;
 }
