@@ -10,14 +10,12 @@ const ProductsCarousel = ({ type }) => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get("api/products", {
-        params: {
-          type,
-        },
-      });
+      const { data } = await axios.get(`api/${type}`);
       setProducts(data.products);
     })();
   }, []);
+
+  console.log(products);
   return (
     <div className="w-full mx-auto my-6 md:my-16">
       <div className="flex justify-between items-center pb-3 mb-6 border-b-2">

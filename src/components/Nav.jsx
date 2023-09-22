@@ -70,7 +70,7 @@ const Nav = () => {
             <Link href="all-fashion" className="desktop_nav_link">
               All Fashion
             </Link>
-            <Link href="/new-arrivals" className="desktop_nav_link">
+            <Link href="/new" className="desktop_nav_link">
               New Arrivals
             </Link>
             <Link href="trending" className="desktop_nav_link">
@@ -78,7 +78,7 @@ const Nav = () => {
             </Link>
           </div>
           <Link
-            href="hot-deals"
+            href="hot"
             className="font-semibold text-wild_red underline underline-offset-2"
           >
             Hot Deals
@@ -138,7 +138,7 @@ const Nav = () => {
               All Products
             </Link>
             <Link
-              href="/new-arrivals"
+              href="/new"
               onClick={() => {
                 setIsOpen(false);
               }}
@@ -154,7 +154,7 @@ const Nav = () => {
               Trending
             </Link>
             <Link
-              href="hot-deals"
+              href="hot"
               className="font-semibold text-wild_red underline underline-offset-2"
               onClick={() => setIsOpen(false)}
             >
