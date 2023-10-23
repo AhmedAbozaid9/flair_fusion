@@ -5,17 +5,19 @@ import "@splidejs/splide/css";
 import ProductCard from "./ProductCard";
 import Link from "next/link";
 import axios from "axios";
+import LoadingProductCards from "./LoadingProductCards";
 
 const ProductsCarousel = ({ type }) => {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     (async () => {
       const { data } = await axios.get(`api/${type}`);
       setProducts(data.products);
+      setIsLoading(false);
     })();
   }, []);
 
-  console.log(products);
   return (
     <div className="w-full mx-auto my-6 md:my-16">
       <div className="flex justify-between items-center pb-3 mb-6 border-b-2">
@@ -36,13 +38,17 @@ const ProductsCarousel = ({ type }) => {
           interval: 2000,
         }}
       >
-        {products.map((product) => (
-          <SplideSlide key={product._id}>
-            <div className="sm:px-4 px-2">
-              <ProductCard {...product} />
-            </div>
-          </SplideSlide>
-        ))}
+        {isLoading ? (
+          <LoadingProductCards count={5} isCarousel={true} />
+        ) : (
+          products.map((product) => (
+            <SplideSlide key={product._id}>
+              <div className="sm:px-4 px-2">
+                <ProductCard {...product} />
+              </div>
+            </SplideSlide>
+          ))
+        )}
       </Splide>
     </div>
   );

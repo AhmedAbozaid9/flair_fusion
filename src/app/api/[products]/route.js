@@ -17,7 +17,6 @@ export const GET = async (req, { params }) => {
     await connectToDB();
     const startIndex = (page - 1) * itemsPerPage;
     const productsCount = (await Product.find(type ? { type } : {})).length;
-    console.log(params);
 
     const products = await Product.find(type ? { type } : {})
       .skip(startIndex)

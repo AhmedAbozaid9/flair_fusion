@@ -3,9 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 function ProductCard({ title, price, images, _id }) {
+  
   return (
-    <div className="cursor-pointer flex flex-col gap-2 items-center justify-center w-36 sm:w-60">
-      <Link href="/products" className="w-full">
+    <div className="cursor-pointer flex flex-col gap-2 items-center justify-center w-36 sm:w-60 h-[310px] sm:h-[450px]">
+      <Link href={_id} className="w-full">
         <div className="relative w-full h-48 sm:h-80">
           <Image
             src={images[0]}
