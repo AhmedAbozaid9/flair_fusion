@@ -44,7 +44,7 @@ const ProductsCarousel = ({ type }) => {
           products.map((product) => (
             <SplideSlide key={product._id}>
               <div className="sm:px-4 px-2">
-                <ProductCard {...product} />
+                <ProductCard {...product} type={type} />
               </div>
             </SplideSlide>
           ))
