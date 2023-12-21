@@ -20,6 +20,7 @@ const Banner = () => {
         alt="banner_image"
         width={300}
         height={600}
+        placeholder="blur"
       />
     </div>
   );
