@@ -1,7 +1,7 @@
 import { connectToDB } from "@utils/database";
 import Product from "@models/product";
 
-export const GET = async (request, { params }) => {
+export const GET = async (_, { params }) => {
   const productId = params.id;
   console.log(productId);
 
