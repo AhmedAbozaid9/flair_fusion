@@ -14,7 +14,7 @@ const ProductsList = ({ type }) => {
   useEffect(() => {
     (async () => {
       setIsLoading(true);
-      const { data } = await axios.get(`api/${type}`, {
+      const { data } = await axios.get(`/api/${type}`, {
         params: { page },
       });
       setIsLoading(false);

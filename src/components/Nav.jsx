@@ -67,18 +67,18 @@ const Nav = () => {
         <div className="my-4 w-full h-[0.5px] bg-gray-300" />
         <div className="flex justify-between">
           <div className="flex gap-5">
-            <Link href="all-fashion" className="desktop_nav_link">
+            <Link href="/products/all" className="desktop_nav_link">
               All Fashion
             </Link>
-            <Link href="/new" className="desktop_nav_link">
+            <Link href="/products/new" className="desktop_nav_link">
               New Arrivals
             </Link>
-            <Link href="trending" className="desktop_nav_link">
+            <Link href="/products/trending" className="desktop_nav_link">
               Trending
             </Link>
           </div>
           <Link
-            href="hot"
+            href="/products/hot"
             className="font-semibold text-wild_red underline underline-offset-2"
           >
             Hot Deals

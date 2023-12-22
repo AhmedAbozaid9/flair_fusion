@@ -2,7 +2,8 @@ import ProductsBrowser from "@components/products/ProductsBrowser";
 import React from "react";
 
 const Page = ({ params }) => {
-  return <ProductsBrowser type={params.products} />;
+  console.log("aaa");
+  return <ProductsBrowser type={params.type} />;
 };
 
 export default Page;
