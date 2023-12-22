@@ -200,7 +200,7 @@ const Nav = () => {
               All Products
             </Link>
             <Link
-              href="/new"
+              href="/products/new"
               onClick={() => {
                 setIsOpen(false);
               }}
@@ -208,7 +208,7 @@ const Nav = () => {
               New Arrivals
             </Link>
             <Link
-              href="trending"
+              href="/products/trending"
               onClick={() => {
                 setIsOpen(false);
               }}
@@ -216,7 +216,7 @@ const Nav = () => {
               Trending
             </Link>
             <Link
-              href="hot"
+              href="/products/hot"
               className="font-semibold text-wild_red underline underline-offset-2"
               onClick={() => setIsOpen(false)}
             >
