@@ -3,6 +3,8 @@ import Nav from "@/components/Nav";
 import React from "react";
 import { Rubik } from "next/font/google";
 
+import Provider from "@components/Provider";
+
 export const metadata = {
   title: "Flair Fusion",
   description: "The best fashion website",
@@ -14,10 +16,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={rubik.className}>
-        <main className="main">
-          <Nav />
-          {children}
-        </main>
+        <Provider>
+          <main className="main">
+            <Nav />
+            {children}
+          </main>
+        </Provider>
       </body>
     </html>
   );
