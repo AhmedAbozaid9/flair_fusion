@@ -1,5 +1,4 @@
 "use client";
-import GalleryCarousel from "@components/GalleryCarousel";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
@@ -22,7 +21,6 @@ const page = ({ params }) => {
   return (
     <>
       <section className="flex">
-        <GalleryCarousel productImages={product.images} />
         <div>
           <h2 className="text-3xl font-semibold">{product.title}</h2>
           <p>{product.desc}</p>
