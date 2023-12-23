@@ -26,7 +26,7 @@ const CartItemCard = ({ product }) => {
           </div>
           <div className="flex justify-between items-center mt-2">
             <QuantityCounter />
-            <p>{`${product.price} EGP`}</p>
+            <p className="text-center w-32">{`${product.price} EGP`}</p>
             <div className="flex items-center">
               <button className="mx-2  text-blue-950">
                 <AiOutlineHeart size={30} />
