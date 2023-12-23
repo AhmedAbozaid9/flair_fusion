@@ -9,7 +9,7 @@ const CartItemCard = ({ product }) => {
       {product && (
         <div className="flex max-sm:flex-col sm:items-center sm:justify-between h-full">
           <div className="h-full flex items-center gap-3 sm:gap-5">
-            <div className="relative w-36 h-36">
+            <div className="relative w-28 h-28 sm:w-36 sm:h-36">
               <Image
                 src={product.images[0]}
                 alt={product.title}
@@ -31,7 +31,7 @@ const CartItemCard = ({ product }) => {
               <button className="mx-2  text-blue-950">
                 <AiOutlineHeart size={30} />
               </button>
-              <button className="action_btn border-2 border-blue-950">
+              <button className="action_btn border border-blue-950 max-sm:text-sm">
                 Remove
               </button>
             </div>

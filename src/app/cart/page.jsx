@@ -60,7 +60,9 @@ const products = [
 const Page = () => {
   return (
     <>
-      <h1 className="text-4xl my-4 font-semibold">Shopping Cart</h1>
+      <h1 className="sm:text-4xl text-3xl sm:my-4 my-2 mx-2 font-semibold">
+        Shopping Cart
+      </h1>
       <main className="flex max-lg:flex-col gap-3 mx-1">
         <section className="p-4 mt-4 border border-gray-300 rounded-md flex flex-col flex-1">
           {products.map((product, idx) => (
