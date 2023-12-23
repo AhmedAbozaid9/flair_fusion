@@ -1,8 +1,20 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+import axios from "axios";
 
 function ProductCard({ title, price, images, _id }) {
+  const { data: session } = useSession();
+  const handleAddToCart = async () => {
+    if(session) {
+      try {
+        const response = await axios.patch('/api/cart')
+      } catch(e) {
+        console.log(e);
+      }
+    }
+  };
   return (
     <div className="cursor-pointer flex flex-col gap-2 items-center justify-center w-36 sm:w-60 h-[310px] sm:h-[450px]">
       <Link href={"/" + _id} className="w-full">
@@ -18,7 +30,10 @@ function ProductCard({ title, price, images, _id }) {
         <h3 className="w-full py-2 truncate ...">{title}</h3>
         <p className="text-pastel_red pb-2">{price} EGP</p>
       </Link>
-      <button className="w-full bg-pastel_red text-white py-2 text-sm sm:text-md rounded-sm">
+      <button
+        className="w-full bg-pastel_red text-white py-2 text-sm sm:text-md rounded-sm"
+        onClick={handleAddToCart}
+      >
         Add To Cart
       </button>
     </div>

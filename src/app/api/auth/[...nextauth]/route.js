@@ -3,6 +3,8 @@ import GoogleProvider from "next-auth/providers/google";
 
 import { connectToDB } from "@utils/database";
 import User from "@models/user";
+import UserCart from "@models/userCart";
+import UserWishlist from "@models/userWishlist";
 
 const handler = NextAuth({
   providers: [
@@ -31,6 +33,17 @@ const handler = NextAuth({
             email: profile.email,
             username: profile.name.replace(" ", "").toLowerCase(),
             image: profile.picture,
+          }).then(async (createdUser) => {
+            console.log(typeof createdUser._id);
+            //create a cart and a wishlist for the user
+            await UserCart.create({
+              client: createdUser._id,
+              cartItems: [],
+            });
+            await UserWishlist.create({
+              client: createdUser._id,
+              wishlistItems: [],
+            });
           });
         }
         return true;

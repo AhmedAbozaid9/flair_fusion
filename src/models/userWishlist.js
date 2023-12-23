@@ -1,6 +1,6 @@
 import { Schema, model, models } from "mongoose";
 
-const UserCartSchema = new Schema({
+const UserWishlistSchema = new Schema({
   client: {
     type: Schema.Types.ObjectId,
     ref: "User",
@@ -10,5 +10,6 @@ const UserCartSchema = new Schema({
   },
 });
 
-const UserCart = models.UserCart || model("UserCart", UserCartSchema);
-export default UserCart;
+const UserWishlist =
+  models.UserWishlist || model("UserWishlist", UserWishlistSchema);
+export default UserWishlist;
