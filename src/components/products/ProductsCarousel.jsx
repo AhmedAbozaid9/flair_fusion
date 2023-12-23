@@ -24,7 +24,7 @@ const ProductsCarousel = ({ type }) => {
         <h3 className="text-xl sm:text-2xl font-bold text-blue-950">
           {type.charAt(0).toUpperCase() + type.slice(1)}
         </h3>
-        <Link href={type} className="text-pastel_red">
+        <Link href={`products/${type}`} className="text-pastel_red">
           See more
         </Link>
       </div>

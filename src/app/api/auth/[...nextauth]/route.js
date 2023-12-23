@@ -33,14 +33,15 @@ const handler = NextAuth({
             email: profile.email,
             username: profile.name.replace(" ", "").toLowerCase(),
             image: profile.picture,
-          }).then(async (createdUser) => {
-            console.log(typeof createdUser._id);
+          }).then((createdUser) => {
             //create a cart and a wishlist for the user
-            await UserCart.create({
+            UserCart.create({
               client: createdUser._id,
               cartItems: [],
+            }).then((createdCart) => {
+              console.log(createdCart);
             });
-            await UserWishlist.create({
+            UserWishlist.create({
               client: createdUser._id,
               wishlistItems: [],
             });
