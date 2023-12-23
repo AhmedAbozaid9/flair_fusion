@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 input,
 textarea,
 button,
@@ -44,7 +43,7 @@ a {
   @apply w-full h-full z-10 bg-black opacity-30 absolute;
 }
 .action_btn {
-  @apply px-4 py-2 mt-3 font-semibold bg-white text-blue-950 rounded-sm sm:hover:bg-blue-950 sm:hover:text-white active:bg-blue-950 active:text-white transition-colors;
+  @apply px-4 py-2 font-semibold bg-white text-blue-950 rounded-sm sm:hover:bg-blue-950 sm:hover:text-white active:bg-blue-950 active:text-white transition-colors;
 }
 
 .mobile_menu {

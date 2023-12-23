@@ -13,7 +13,7 @@ const Banner = () => {
           <span className="text-wild_red">New{` `}</span>
           Collection
         </div>
-        <button className="action_btn">Buy Now Today</button>
+        <button className="action_btn mt-3">Buy Now Today</button>
       </div>
       <Image
         src={"assets/banner_pic.svg"}
