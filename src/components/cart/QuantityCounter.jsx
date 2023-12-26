@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 
-const QuantityCounter = () => {
-  const [quantity, setQuantity] = useState(1);
+const QuantityCounter = ({ count }) => {
+  const [quantity, setQuantity] = useState(count);
   return (
     <div className="flex items-center mx-2">
       <button

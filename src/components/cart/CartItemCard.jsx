@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { AiOutlineHeart } from "react-icons/ai";
 
 import QuantityCounter from "./QuantityCounter";
-const CartItemCard = ({ product }) => {
+import axios from "axios";
+const CartItemCard = ({ productId, count }) => {
+  const [product, setProduct] = useState();
+  const [quantity, setQuantity] = useState(0);
+  useEffect(() => {
+    (async () => {
+      const { data } = await axios.get(`/api/product/${productId}`);
+      setQuantity(count);
+      setProduct(data);
+    })();
+  }, [productId]);
   return (
     <>
       {product && (
@@ -25,7 +35,7 @@ const CartItemCard = ({ product }) => {
             </div>
           </div>
           <div className="flex justify-between items-center mt-2">
-            <QuantityCounter />
+            <QuantityCounter count={quantity} />
             <p className="text-center w-32">{`${product.price} EGP`}</p>
             <div className="flex items-center">
               <button className="mx-2  text-blue-950">
