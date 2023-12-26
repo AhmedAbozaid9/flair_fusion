@@ -6,11 +6,14 @@ import axios from "axios";
 
 function ProductCard({ title, price, images, _id }) {
   const { data: session } = useSession();
+
   const handleAddToCart = async () => {
-    if(session) {
+    if (session) {
       try {
-        const response = await axios.patch('/api/cart')
-      } catch(e) {
+        await axios.post(`/api/cart/${session.user.id}`, {
+          productId: _id,
+        });
+      } catch (e) {
         console.log(e);
       }
     }
