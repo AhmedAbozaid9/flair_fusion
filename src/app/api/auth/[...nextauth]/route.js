@@ -38,9 +38,7 @@ const handler = NextAuth({
             UserCart.create({
               client: createdUser._id,
               cartItems: [],
-            }).then((createdCart) => {
-              console.log(createdCart);
-            });
+            })
             UserWishlist.create({
               client: createdUser._id,
               wishlistItems: [],
