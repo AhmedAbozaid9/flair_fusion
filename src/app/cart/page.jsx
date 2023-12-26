@@ -8,12 +8,14 @@ import axios from "axios";
 
 const Page = () => {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { data: session } = useSession();
 
   useEffect(() => {
     (async () => {
       if (session) {
         const { data } = await axios.get(`/api/cart/${session.user.id}`);
+        setIsLoading(false);
         setProducts(data);
       }
     })();
@@ -25,23 +27,23 @@ const Page = () => {
       </h1>
       <main className="flex max-lg:flex-col gap-3 mx-1">
         <section className="p-4 mt-4 border border-gray-300 rounded-md flex flex-col just flex-1">
-          {products ? (
+          {isLoading ? (
+            "loading"
+          ) : (
             <>
               {products.length > 0 ? (
                 products.map((product, idx) => (
-                  <>
-                    <CartItemCard key={product.productId} {...product} />
+                  <div key={product.productId}>
+                    <CartItemCard {...product} />
                     {!(products.length - 1 === idx) && (
                       <div className="my-4 w-full h-[0.5px] bg-gray-300" />
                     )}
-                  </>
+                  </div>
                 ))
               ) : (
                 <EmptyCart />
               )}
             </>
-          ) : (
-            ""
           )}
         </section>
         <section className="p-4 mt-4 border border-gray-300 rounded-md flex h-full flex-col">

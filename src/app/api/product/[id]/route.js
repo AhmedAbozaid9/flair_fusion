@@ -3,7 +3,6 @@ import Product from "@models/product";
 
 export const GET = async (_, { params }) => {
   const productId = params.id;
-  console.log(productId);
 
   try {
     await connectToDB();

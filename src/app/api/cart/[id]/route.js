@@ -20,7 +20,6 @@ export const POST = async (request, { params }) => {
       (item) => item.productId === productId
     );
     if (cartItem) {
-      console.log(cartItem);
       cartItem.count = cartItem.count + 1;
     } else {
       existingCart.cartItems.push({ productId, count: 1 });

@@ -4,16 +4,38 @@ import { AiOutlineHeart } from "react-icons/ai";
 
 import QuantityCounter from "./QuantityCounter";
 import axios from "axios";
+import { useSession } from "next-auth/react";
+
 const CartItemCard = ({ productId, count }) => {
+  const { data: session } = useSession();
+
   const [product, setProduct] = useState();
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(count);
+
   useEffect(() => {
     (async () => {
       const { data } = await axios.get(`/api/product/${productId}`);
-      setQuantity(count);
       setProduct(data);
     })();
   }, [productId]);
+
+  const handleAdd = async () => {
+    setQuantity((prev) => prev + 1);
+    if (session) {
+      try {
+        await axios.post(`/api/cart/${session.user.id}`, {
+          productId: product._id,
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
+  const handleDelete = () => {
+    setQuantity((prev) => prev - 1);
+    if (quantity < 1) {
+    }
+  };
   return (
     <>
       {product && (
@@ -35,7 +57,11 @@ const CartItemCard = ({ productId, count }) => {
             </div>
           </div>
           <div className="flex justify-between items-center mt-2">
-            <QuantityCounter count={quantity} />
+            <QuantityCounter
+              quantity={quantity}
+              handleAdd={handleAdd}
+              handleDelete={handleDelete}
+            />
             <p className="text-center w-32">{`${product.price} EGP`}</p>
             <div className="flex items-center">
               <button className="mx-2  text-blue-950">

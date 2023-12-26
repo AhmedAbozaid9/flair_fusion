@@ -1,22 +1,18 @@
-"use client";
-import React, { useState } from "react";
-
-const QuantityCounter = ({ count }) => {
-  const [quantity, setQuantity] = useState(count);
+const QuantityCounter = ({ quantity, handleAdd, handleDelete }) => {
   return (
     <div className="flex items-center mx-2">
       <button
         className="p-2 bg-blue-950 text-white w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center"
-        onClick={() => setQuantity((prev) => prev + 1)}
+        onClick={handleAdd}
       >
         +
       </button>
-      <div className="p-2 w-8 h-8 sm:w-10 sm:h-10 text-center flex items-center justify-center">
+      <p className="p-2 w-8 h-8 sm:w-10 sm:h-10 text-center flex items-center justify-center">
         {quantity}
-      </div>
+      </p>
       <button
         className="p-2 border border-gray-300  w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center"
-        onClick={() => setQuantity((prev) => prev - 1)}
+        onClick={handleDelete}
       >
         -
       </button>
