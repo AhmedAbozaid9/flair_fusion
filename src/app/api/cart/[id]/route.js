@@ -36,6 +36,7 @@ export const POST = async (request, { params }) => {
 
 export const DELETE = async (request, { params }) => {
   const { productId, deleteQuantity } = await request.json();
+  console.log(productId, deleteQuantity);
   const amount = deleteQuantity || 1;
   try {
     let existingCart = await UserCart.findOne({ client: params.id });

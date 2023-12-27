@@ -6,7 +6,7 @@ import QuantityCounter from "./QuantityCounter";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 
-const CartItemCard = ({ productId, count }) => {
+const CartItemCard = ({ productId, count, setProducts }) => {
   const { data: session } = useSession();
 
   const [product, setProduct] = useState();
@@ -31,9 +31,26 @@ const CartItemCard = ({ productId, count }) => {
       }
     }
   };
-  const handleDelete = () => {
+
+  const handleDelete = async (quantity) => {
     setQuantity((prev) => prev - 1);
-    if (quantity < 1) {
+
+    if (quantity < 2) {
+      setProducts((prev) =>
+        prev.filter((product) => product.productId !== productId)
+      );
+    }
+    if (session) {
+      try {
+        await axios.delete(`api/cart/${session.user.id}`, {
+          data: {
+            productId: product._id,
+            deleteQuantity: quantity,
+          },
+        });
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
   return (
@@ -67,7 +84,16 @@ const CartItemCard = ({ productId, count }) => {
               <button className="mx-2  text-blue-950">
                 <AiOutlineHeart size={30} />
               </button>
-              <button className="action_btn border border-blue-950 max-sm:text-sm">
+              <button
+                className="action_btn border border-blue-950 max-sm:text-sm"
+                onClick={() => {
+                  setQuantity(1);
+                  setProducts((prev) =>
+                    prev.filter((product) => product.productId !== productId)
+                  );
+                  handleDelete(quantity);
+                }}
+              >
                 Remove
               </button>
             </div>

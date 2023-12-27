@@ -34,7 +34,7 @@ const Page = () => {
               {products.length > 0 ? (
                 products.map((product, idx) => (
                   <div key={product.productId} className="flex flex-col">
-                    <CartItemCard {...product} />
+                    <CartItemCard {...product} setProducts={setProducts} />
                     {!(products.length - 1 === idx) && (
                       <div className="my-4 w-full h-[0.5px] bg-gray-300" />
                     )}
