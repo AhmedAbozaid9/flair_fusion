@@ -12,7 +12,7 @@ const QuantityCounter = ({ quantity, handleAdd, handleDelete }) => {
       </p>
       <button
         className="p-2 border border-gray-300  w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center"
-        onClick={handleDelete}
+        onClick={() => handleDelete(1)}
       >
         -
       </button>

@@ -6,7 +6,7 @@ import QuantityCounter from "./QuantityCounter";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 
-const CartItemCard = ({ productId, count, setProducts }) => {
+const CartItemCard = ({ productId, count, setProducts, setPrice }) => {
   const { data: session } = useSession();
 
   const [product, setProduct] = useState();
@@ -16,8 +16,11 @@ const CartItemCard = ({ productId, count, setProducts }) => {
     (async () => {
       const { data } = await axios.get(`/api/product/${productId}`);
       setProduct(data);
+      setPrice(
+        (prev) => prev + parseFloat(data.price.replace(",", "")) * count
+      );
     })();
-  }, [productId]);
+  }, [productId, quantity]);
 
   const handleAdd = async () => {
     setQuantity((prev) => prev + 1);
@@ -32,7 +35,9 @@ const CartItemCard = ({ productId, count, setProducts }) => {
     }
   };
 
-  const handleDelete = async (quantity) => {
+  const handleDelete = async (existingQuantity) => {
+    console.log(quantity);
+
     setQuantity((prev) => prev - 1);
 
     if (quantity < 2) {
@@ -45,7 +50,7 @@ const CartItemCard = ({ productId, count, setProducts }) => {
         await axios.delete(`api/cart/${session.user.id}`, {
           data: {
             productId: product._id,
-            deleteQuantity: quantity,
+            deleteQuantity: existingQuantity,
           },
         });
       } catch (e) {

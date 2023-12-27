@@ -8,6 +8,8 @@ import axios from "axios";
 
 const Page = () => {
   const [products, setProducts] = useState([]);
+  const [price, setPrice] = useState(0);
+  
   const [isLoading, setIsLoading] = useState(true);
   const { data: session } = useSession();
 
@@ -20,6 +22,7 @@ const Page = () => {
       }
     })();
   }, [session]);
+
   return (
     <>
       <h1 className="sm:text-4xl text-3xl sm:my-4 my-2 mx-2 font-semibold">
@@ -34,7 +37,11 @@ const Page = () => {
               {products.length > 0 ? (
                 products.map((product, idx) => (
                   <div key={product.productId} className="flex flex-col">
-                    <CartItemCard {...product} setProducts={setProducts} />
+                    <CartItemCard
+                      {...product}
+                      setProducts={setProducts}
+                      setPrice={setPrice}
+                    />
                     {!(products.length - 1 === idx) && (
                       <div className="my-4 w-full h-[0.5px] bg-gray-300" />
                     )}
@@ -64,7 +71,7 @@ const Page = () => {
           <div>
             <div className="flex items-center justify-between py-2">
               <p>Items Price : </p>
-              <span className="font-semibold"> {`${500.0} EGP`}</span>
+              <span className="font-semibold"> {`${price} EGP`}</span>
             </div>
             <div className="flex items-center justify-between py-2">
               <p>Shipping Price : </p>
@@ -72,7 +79,7 @@ const Page = () => {
             </div>
             <div className="flex items-center justify-between py-2 ">
               <p>Total Price : </p>
-              <span className="font-semibold">{`${530.0} EGP`}</span>
+              <span className="font-semibold">{`${price + 30.0} EGP`}</span>
             </div>
           </div>
         </section>
