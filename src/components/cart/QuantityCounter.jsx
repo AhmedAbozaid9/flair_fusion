@@ -1,4 +1,4 @@
-const QuantityCounter = ({ quantity, handleAdd, handleDelete, setPrice }) => {
+const QuantityCounter = ({ quantity, handleAdd, handleDelete }) => {
   return (
     <div className="flex items-center mx-2">
       <button

@@ -9,7 +9,7 @@ import axios from "axios";
 const Page = () => {
   const [products, setProducts] = useState([]);
   const [price, setPrice] = useState(0);
-  
+
   const [isLoading, setIsLoading] = useState(true);
   const { data: session } = useSession();
 
@@ -82,6 +82,9 @@ const Page = () => {
               <span className="font-semibold">{`${price + 30.0} EGP`}</span>
             </div>
           </div>
+          <button className="bg-blue-950 text-white px-4 py-2 mt-3">
+            Checkout
+          </button>
         </section>
       </main>
     </>
