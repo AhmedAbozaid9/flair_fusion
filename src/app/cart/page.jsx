@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import CartItemCard from "@components/cart/CartItemCard";
 import EmptyCart from "@components/cart/EmptyCart";
 import axios from "axios";
+import CartLoadingItemCard from "@components/cart/CartLoadingItemCard";
 
 const Page = () => {
   const [products, setProducts] = useState([]);
@@ -29,9 +30,9 @@ const Page = () => {
         Shopping Cart
       </h1>
       <main className="flex max-lg:flex-col gap-3 mx-1">
-        <section className="p-4 mt-4 border border-gray-300 rounded-md flex flex-col just flex-1">
+        <section className="px-4 mt-4 border border-gray-300 rounded-md flex flex-col just flex-1">
           {isLoading ? (
-            "loading"
+            <CartLoadingItemCard count={5} />
           ) : (
             <>
               {products.length > 0 ? (

@@ -66,7 +66,7 @@ const CartItemCard = ({ productId, count, setProducts, setPrice }) => {
   return (
     <>
       {product && (
-        <div className="flex max-sm:flex-col sm:items-center sm:justify-between h-full">
+        <div className="my-4 flex max-sm:flex-col sm:items-center sm:justify-between h-full">
           <div className="h-full flex items-center gap-3 sm:gap-5">
             <div className="relative w-28 h-28 sm:w-36 sm:h-36">
               <Image
