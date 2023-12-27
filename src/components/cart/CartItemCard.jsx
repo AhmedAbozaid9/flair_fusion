@@ -20,10 +20,11 @@ const CartItemCard = ({ productId, count, setProducts, setPrice }) => {
         (prev) => prev + parseFloat(data.price.replace(",", "")) * count
       );
     })();
-  }, [productId, quantity]);
+  }, [productId]);
 
   const handleAdd = async () => {
     setQuantity((prev) => prev + 1);
+    setPrice((prev) => prev + parseFloat(product.price.replace(",", "")));
     if (session) {
       try {
         await axios.post(`/api/cart/${session.user.id}`, {
@@ -36,9 +37,13 @@ const CartItemCard = ({ productId, count, setProducts, setPrice }) => {
   };
 
   const handleDelete = async (existingQuantity) => {
-    console.log(quantity);
+    console.log(product);
 
     setQuantity((prev) => prev - 1);
+    setPrice(
+      (prev) =>
+        prev - parseFloat(product.price.replace(",", "")) * existingQuantity
+    );
 
     if (quantity < 2) {
       setProducts((prev) =>
