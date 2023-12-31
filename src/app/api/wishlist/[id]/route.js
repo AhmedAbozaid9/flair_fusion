@@ -14,11 +14,11 @@ export const GET = async (_, { params }) => {
 };
 
 export const POST = async (request, { params }) => {
-  const { product } = await request.json();
+  const { productId } = await request.json();
   try {
     connectToDB();
     const existingWishlist = await UserWishlist.findOne({ client: params.id });
-    existingWishlist.wishlistItems.push(product);
+    existingWishlist.wishlistItems.push(productId);
 
     existingWishlist.markModified("wishlistItems");
     await existingWishlist.save();
@@ -30,25 +30,18 @@ export const POST = async (request, { params }) => {
 };
 
 export const DELETE = async (request, { params }) => {
-  const { productId, deleteQuantity } = await request.json();
-  console.log(productId, deleteQuantity);
-  const amount = deleteQuantity || 1;
+  const { productId } = await request.json();
   try {
-    let existingCart = await UserCart.findOne({ client: params.id });
+    const existingWishlist = await UserWishlist.findOne({ client: params.id });
 
-    const cartItem = existingCart.cartItems.find(
-      (item) => item.productId === productId
+    existingWishlist.wishlistItems = existingWishlist.wishlistItems.filter(
+      (product) => product !== productId
     );
-    cartItem.count = cartItem.count - amount;
-    if (cartItem.count < 1) {
-      existingCart.cartItems = existingCart.cartItems.filter(
-        (product) => product.productId !== productId
-      );
-    }
-    existingCart.markModified("cartItems");
-    await existingCart.save();
 
-    return new Response(JSON.stringify(existingCart), { status: 200 });
+    existingWishlist.markModified("wishlistItems");
+    await existingWishlist.save();
+
+    return new Response(JSON.stringify(existingWishlist), { status: 200 });
   } catch (e) {
     console.log(e);
     return new Response("Failed to delete the item", { status: 500 });
