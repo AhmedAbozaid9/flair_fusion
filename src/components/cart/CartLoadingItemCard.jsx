@@ -6,7 +6,7 @@ const CartLoadingItemCard = ({ count }) => {
   return (
     <>
       {nums.map((_, idx) => (
-        <div className="flex flex-col ">
+        <div className="flex flex-col " key={idx}>
           <div className="flex max-sm:flex-col sm:items-center sm:justify-between h-full my-4">
             <div className="flex gap-5">
               <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gray-200 animate-pulse" />

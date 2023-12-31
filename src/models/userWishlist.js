@@ -5,7 +5,7 @@ const UserWishlistSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  cartItems: {
+  wishlistItems: {
     type: Array,
   },
 });

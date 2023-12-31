@@ -68,7 +68,7 @@ const Nav = () => {
             <Link href="/cart">
               <AiOutlineShoppingCart size={26} />
             </Link>
-            <Link href="/favourties">
+            <Link href="/products/wishlist">
               <AiOutlineHeart size={26} />
             </Link>
             {/*Login button*/}
@@ -139,7 +139,7 @@ const Nav = () => {
             <Link href="/cart">
               <AiOutlineShoppingCart size={22} />
             </Link>
-            <Link href="/favourties">
+            <Link href="/products/wishlist">
               <AiOutlineHeart size={22} />
             </Link>
             {/*Login button*/}

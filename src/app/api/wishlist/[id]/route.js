@@ -1,43 +1,29 @@
-import UserCart from "@models/userCart";
-import Product from "@models/product";
+import UserWishlist from "@models/userWishlist";
 import { connectToDB } from "@utils/database";
 
 export const GET = async (_, { params }) => {
   try {
     connectToDB();
-    const cart = await UserCart.findOne({ client: params.id });
-    const products = await Promise.all(
-      cart.cartItems.map(async (item) => {
-        const product = await Product.findById(item.productId);
-
-        return { product, quantity: item.count };
-      })
-    );
-    console.log(products);
-    return new Response(JSON.stringify(products), { status: 200 });
+    const wishlist = await UserWishlist.findOne({ client: params.id });
+    return new Response(JSON.stringify(wishlist.wishlistItems), {
+      status: 200,
+    });
   } catch (e) {
     return new Response("Failed to get the items", { status: 500 });
   }
 };
 
 export const POST = async (request, { params }) => {
-  const { productId } = await request.json();
+  const { product } = await request.json();
   try {
     connectToDB();
-    const existingCart = await UserCart.findOne({ client: params.id });
-    const cartItem = existingCart.cartItems.find(
-      (item) => item.productId === productId
-    );
-    if (cartItem) {
-      cartItem.count = cartItem.count + 1;
-    } else {
-      existingCart.cartItems.push({ productId, count: 1 });
-    }
+    const existingWishlist = await UserWishlist.findOne({ client: params.id });
+    existingWishlist.wishlistItems.push(product);
 
-    existingCart.markModified("cartItems");
-    await existingCart.save();
+    existingWishlist.markModified("wishlistItems");
+    await existingWishlist.save();
 
-    return new Response(JSON.stringify(existingCart), { status: 201 });
+    return new Response(JSON.stringify(existingWishlist), { status: 201 });
   } catch (e) {
     return new Response("Failed to add items to the cart", { status: 500 });
   }

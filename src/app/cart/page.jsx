@@ -18,11 +18,23 @@ const Page = () => {
     (async () => {
       if (session) {
         const { data } = await axios.get(`/api/cart/${session.user.id}`);
-        setIsLoading(false);
         setProducts(data);
+
+        setIsLoading(false);
       }
     })();
   }, [session]);
+
+  useEffect(() => {
+    // Calculate total price when products state changes
+    const totalPrice = products.reduce((sum, item) => {
+      const productPrice = parseFloat(item.product.price.replace(",", ""));
+      const productTotal = productPrice * item.quantity;
+      return sum + productTotal;
+    }, 0);
+
+    setPrice(totalPrice);
+  }, [products]);
 
   return (
     <>
@@ -37,9 +49,10 @@ const Page = () => {
             <>
               {products.length > 0 ? (
                 products.map((product, idx) => (
-                  <div key={product.productId} className="flex flex-col">
+                  <div key={idx} className="flex flex-col">
                     <CartItemCard
-                      {...product}
+                      product={product.product}
+                      count={product.quantity}
                       setProducts={setProducts}
                       setPrice={setPrice}
                     />
