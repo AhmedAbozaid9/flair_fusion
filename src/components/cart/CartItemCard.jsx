@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { AiOutlineHeart } from "react-icons/ai";
 
+import WishlistButton from "@components/products/WishlistButton";
 import QuantityCounter from "./QuantityCounter";
 import axios from "axios";
 import { useSession } from "next-auth/react";
@@ -76,9 +76,11 @@ const CartItemCard = ({ product, count, setProducts, setPrice }) => {
         />
         <p className="text-center w-32">{`${product.price} EGP`}</p>
         <div className="flex items-center">
-          <button className="mx-2  text-blue-950">
-            <AiOutlineHeart size={30} />
-          </button>
+          <WishlistButton
+            size={30}
+            productId={product._id}
+            userId={session.user.id}
+          />
           <button
             className="action_btn border border-blue-950 max-sm:text-sm"
             onClick={() => {

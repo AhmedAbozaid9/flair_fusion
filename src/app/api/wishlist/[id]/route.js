@@ -1,11 +1,20 @@
 import UserWishlist from "@models/userWishlist";
+import Product from "@models/product";
 import { connectToDB } from "@utils/database";
 
 export const GET = async (_, { params }) => {
   try {
     connectToDB();
     const wishlist = await UserWishlist.findOne({ client: params.id });
-    return new Response(JSON.stringify(wishlist.wishlistItems), {
+
+    const products = await Promise.all(
+      wishlist.wishlistItems.map(async (item) => {
+        const product = await Product.findById(item);
+
+        return product;
+      })
+    );
+    return new Response(JSON.stringify(products), {
       status: 200,
     });
   } catch (e) {
@@ -18,7 +27,9 @@ export const POST = async (request, { params }) => {
   try {
     connectToDB();
     const existingWishlist = await UserWishlist.findOne({ client: params.id });
-    existingWishlist.wishlistItems.push(productId);
+    if (!existingWishlist.wishlistItems.includes(productId)) {
+      existingWishlist.wishlistItems.push(productId);
+    }
 
     existingWishlist.markModified("wishlistItems");
     await existingWishlist.save();

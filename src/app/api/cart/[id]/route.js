@@ -13,7 +13,6 @@ export const GET = async (_, { params }) => {
         return { product, quantity: item.count };
       })
     );
-    console.log(products);
     return new Response(JSON.stringify(products), { status: 200 });
   } catch (e) {
     return new Response("Failed to get the items", { status: 500 });
