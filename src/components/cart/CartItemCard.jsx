@@ -24,6 +24,7 @@ const CartItemCard = ({ product, count, setProducts, setPrice }) => {
       }
     }
   };
+  console.log(product);
 
   const handleDelete = async (existingQuantity) => {
     setQuantity((prev) => prev - 1);
@@ -34,7 +35,7 @@ const CartItemCard = ({ product, count, setProducts, setPrice }) => {
 
     if (quantity < 2) {
       setProducts((prev) =>
-        prev.filter((newProduct) => newProduct.productId !== product.productId)
+        prev.filter((item) => item.product._id !== product._id)
       );
     }
     if (session) {
@@ -84,9 +85,8 @@ const CartItemCard = ({ product, count, setProducts, setPrice }) => {
           <button
             className="action_btn border border-blue-950 max-sm:text-sm"
             onClick={() => {
-              setQuantity(1);
               setProducts((prev) =>
-                prev.filter((product) => product.productId !== productId)
+                prev.filter((item) => item.product._id !== product._id)
               );
               handleDelete(quantity);
             }}

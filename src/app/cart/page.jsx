@@ -26,7 +26,6 @@ const Page = () => {
   }, [session]);
 
   useEffect(() => {
-    // Calculate total price when products state changes
     const totalPrice = products.reduce((sum, item) => {
       const productPrice = parseFloat(item.product.price.replace(",", ""));
       const productTotal = productPrice * item.quantity;
@@ -35,6 +34,7 @@ const Page = () => {
 
     setPrice(totalPrice);
   }, [products]);
+
 
   return (
     <>

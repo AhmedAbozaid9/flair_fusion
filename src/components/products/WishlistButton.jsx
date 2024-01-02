@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 
 const WishlistButton = ({ size, productId, userId }) => {
-  console.log(userId);
 
   const handleAdd = async () => {
     await axios.post(`/api/wishlist/${userId}`, {
