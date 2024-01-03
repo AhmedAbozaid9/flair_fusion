@@ -24,7 +24,6 @@ const CartItemCard = ({ product, count, setProducts, setPrice }) => {
       }
     }
   };
-  console.log(product);
 
   const handleDelete = async (existingQuantity) => {
     setQuantity((prev) => prev - 1);
