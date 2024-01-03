@@ -35,7 +35,7 @@ const ProductsCarousel = ({ type }) => {
           type: "loop",
           arrows: false,
           autoplay: true,
-          interval: 2000,
+          interval: 3500,
         }}
       >
         {isLoading ? (

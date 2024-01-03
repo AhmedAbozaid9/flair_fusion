@@ -35,14 +35,13 @@ const Page = () => {
     setPrice(totalPrice);
   }, [products]);
 
-
   return (
     <>
       <h1 className="sm:text-4xl text-3xl sm:my-4 my-2 mx-2 font-semibold">
         Shopping Cart
       </h1>
       <main className="flex max-lg:flex-col gap-3 mx-1">
-        <section className="px-4 mt-4 border border-gray-300 rounded-md flex flex-col just flex-1">
+        <section className="px-4 mt-4 border border-gray-300 rounded-md flex flex-col justify-center flex-1">
           {isLoading ? (
             <CartLoadingItemCard count={5} />
           ) : (

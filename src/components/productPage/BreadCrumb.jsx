@@ -3,7 +3,7 @@ import React from "react";
 
 const BreadCrumb = ({ gender, type, category }) => {
   return (
-    <div className="flex gap-5 mb-3 sm:mb-5">
+    <div className="flex gap-5 my-2 sm:my-3">
       <Link href="/products/all" className=" text-blue-950">
         {gender}
       </Link>
