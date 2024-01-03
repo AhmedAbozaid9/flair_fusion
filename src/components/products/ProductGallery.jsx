@@ -36,7 +36,7 @@ const ProductGallery = ({ images, transitionTime }) => {
                 key={idx}
                 src={image}
                 alt="product image"
-                className={`w-16 h-12 cursor-pointer ${isActive}`}
+                className={`w-16 h-12 cursor-pointer ${isActive} object-cover`}
                 onClick={() => setShownIndex(idx)}
               />
             </div>
