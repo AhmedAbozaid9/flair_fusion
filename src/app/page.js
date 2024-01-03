@@ -1,3 +1,5 @@
+
+
 import HomeCard from "@components/HomeCard";
 import homeCards from "@constants/HomeCards";
 import Banner from "@components/Banner";
@@ -18,6 +20,7 @@ export default function Home() {
           <ProductsCarousel type={"trending"} />
           <ProductsCarousel type={"hot"} />
         </div>
+        
       </main>
     </>
   );

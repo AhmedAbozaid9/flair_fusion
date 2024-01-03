@@ -3,11 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import axios from "axios";
+import useToast from "@hooks/useToast";
 
 function ProductCard({ title, price, images, _id }) {
   const { data: session } = useSession();
-
+  const { showToast } = useToast();
   const handleAddToCart = async () => {
+    showToast("Added to cart!");
+
     if (session) {
       try {
         await axios.post(`/api/cart/${session.user.id}`, {
@@ -39,6 +42,7 @@ function ProductCard({ title, price, images, _id }) {
       >
         Add To Cart
       </button>
+      <div></div>
     </div>
   );
 }

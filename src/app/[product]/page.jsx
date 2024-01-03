@@ -6,9 +6,11 @@ import { useSession } from "next-auth/react";
 import ProductGallery from "@components/productPage/ProductGallery";
 import BreadCrumb from "@components/productPage/BreadCrumb";
 import WishlistButton from "@components/products/WishlistButton";
+import useToast from "@hooks/useToast";
 
 const page = ({ params }) => {
   const { data: session } = useSession();
+  const { showToast } = useToast();
 
   const productId = params.product;
   const [product, setProduct] = useState({});
@@ -20,6 +22,7 @@ const page = ({ params }) => {
         await axios.post(`/api/cart/${session.user.id}`, {
           productId: product._id,
         });
+        showToast("Added to cart!");
       } catch (e) {
         console.log(e);
       }
@@ -67,7 +70,7 @@ const page = ({ params }) => {
                   />
                 </div>
               </div>
-              <p className="mt-5 max-w-xl">{product.desc}</p>
+              <p className="my-5 max-w-xl">{product.desc}</p>
             </div>
           </div>
         </section>

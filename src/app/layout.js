@@ -2,6 +2,8 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import React from "react";
 import { Rubik } from "next/font/google";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Provider from "@components/Provider";
 
@@ -20,6 +22,18 @@ export default function RootLayout({ children }) {
           <main className="main">
             <Nav />
             {children}
+            <ToastContainer
+              limit={2}
+              position="top-center"
+              autoClose={2000}
+              hideProgressBar
+              newestOnTop={false}
+              closeOnClick
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
           </main>
         </Provider>
       </body>

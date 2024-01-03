@@ -1,9 +1,8 @@
-import ProductsBrowser from "@components/products/ProductsBrowser";
+import ProductsList from "@components/products/ProductsList";
 import React from "react";
 
 const Page = ({ params }) => {
-  console.log("aaa");
-  return <ProductsBrowser type={params.type} />;
+  return <ProductsList type={params.type} />;
 };
 
 export default Page;
