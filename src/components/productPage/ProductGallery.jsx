@@ -18,7 +18,7 @@ const ProductGallery = ({ images, transitionTime }) => {
           key={shownIndex}
           src={images[shownIndex]}
           alt={`Product Image ${shownIndex + 1}`}
-          className="rounded-lg shadow-lg object-cover"
+          className="w-full max-h-[620px] rounded-lg shadow-lg object-cover"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -28,15 +28,14 @@ const ProductGallery = ({ images, transitionTime }) => {
         {images.map((image, idx) => {
           const isActive = idx === shownIndex;
           return (
-            <div className="relative">
+            <div key={idx} className="relative">
               {isActive && (
                 <div className="w-full h-full absolute top-0 left-0 bg-white opacity-60" />
               )}
               <img
-                key={idx}
                 src={image}
                 alt="product image"
-                className={`w-16 h-12 cursor-pointer ${isActive} object-cover`}
+                className={`w-12 h-8 sm:w-16 sm:h-12 cursor-pointer ${isActive} object-cover`}
                 onClick={() => setShownIndex(idx)}
               />
             </div>
