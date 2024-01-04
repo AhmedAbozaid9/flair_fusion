@@ -1,5 +1,3 @@
-
-
 import HomeCard from "@components/HomeCard";
 import homeCards from "@constants/HomeCards";
 import Banner from "@components/Banner";

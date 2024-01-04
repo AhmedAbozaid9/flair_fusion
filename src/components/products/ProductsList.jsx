@@ -1,27 +1,7 @@
-"use client";
-import axios from "axios";
-import React, { useState, useEffect } from "react";
-
 import ProductCard from "./ProductCard";
 import LoadingProductCards from "./LoadingProductCards";
 
-const ProductsList = ({ type }) => {
-  const [products, setProducts] = useState([]);
-  const [count, setCount] = useState(0);
-  const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    (async () => {
-      setIsLoading(true);
-      const { data } = await axios.get(`/api/${type}`, {
-        params: { page },
-      });
-      setIsLoading(false);
-      setProducts((prev) => [...prev, ...data.products]);
-      setCount(data.productsCount);
-    })();
-  }, [type, page]);
+const ProductsList = ({ products, count, isLoading, setPage }) => {
   return (
     <div className="mx-auto">
       <div className="self-start">
