@@ -34,6 +34,15 @@ const Page = () => {
 
     setPrice(totalPrice);
   }, [products]);
+  const updateQuantity = async (productId, productQuanity) => {
+    setProducts((prev) => {
+      const updatedProduct = prev.find(
+        (item) => item.product._id === productId
+      );
+      updatedProduct.quantity = productQuanity;
+      return prev;
+    });
+  };
 
   return (
     <>
@@ -51,7 +60,8 @@ const Page = () => {
                   <div key={idx} className="flex flex-col">
                     <CartItemCard
                       product={product.product}
-                      count={product.quantity}
+                      quantity={product.quantity}
+                      updateQuantity={updateQuantity}
                       setProducts={setProducts}
                       setPrice={setPrice}
                     />

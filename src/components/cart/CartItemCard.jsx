@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import WishlistButton from "@components/products/WishlistButton";
@@ -6,13 +6,17 @@ import QuantityCounter from "./QuantityCounter";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 
-const CartItemCard = ({ product, count, setProducts, setPrice }) => {
+const CartItemCard = ({
+  product,
+  quantity,
+  updateQuantity,
+  setProducts,
+  setPrice,
+}) => {
   const { data: session } = useSession();
 
-  const [quantity, setQuantity] = useState(count);
-
   const handleAdd = async () => {
-    setQuantity((prev) => prev + 1);
+    updateQuantity(product._id, quantity + 1);
     setPrice((prev) => prev + parseFloat(product.price.replace(",", "")));
     if (session) {
       try {
@@ -24,12 +28,30 @@ const CartItemCard = ({ product, count, setProducts, setPrice }) => {
       }
     }
   };
+  const handleDeleteAll = async () => {
+    setProducts((prev) =>
+      prev.filter((item) => item.product._id !== product._id)
+    );
+    if (session) {
+      try {
+        await axios.delete(`api/cart/${session.user.id}`, {
+          data: {
+            productId: product._id,
+            deleteQuantity: quantity,
+          },
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
 
-  const handleDelete = async (existingQuantity) => {
-    setQuantity((prev) => prev - 1);
+  const handleDelete = async (deleteQuantity) => {
+    updateQuantity(product._id, quantity - deleteQuantity);
+    console.log(quantity);
     setPrice(
       (prev) =>
-        prev - parseFloat(product.price.replace(",", "")) * existingQuantity
+        prev - parseFloat(product.price.replace(",", "")) * deleteQuantity
     );
 
     if (quantity < 2) {
@@ -42,7 +64,7 @@ const CartItemCard = ({ product, count, setProducts, setPrice }) => {
         await axios.delete(`api/cart/${session.user.id}`, {
           data: {
             productId: product._id,
-            deleteQuantity: existingQuantity,
+            deleteQuantity: deleteQuantity,
           },
         });
       } catch (e) {
@@ -83,12 +105,7 @@ const CartItemCard = ({ product, count, setProducts, setPrice }) => {
           />
           <button
             className="action_btn border border-blue-950 max-sm:text-sm"
-            onClick={() => {
-              setProducts((prev) =>
-                prev.filter((item) => item.product._id !== product._id)
-              );
-              handleDelete(quantity);
-            }}
+            onClick={handleDeleteAll}
           >
             Remove
           </button>
