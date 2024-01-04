@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa";
-import SearchField from "@components/SearchField";
+import SearchField from "@components/search/SearchField";
 import { Divide as Hamburger } from "hamburger-react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 

@@ -9,8 +9,9 @@ export const GET = async (req) => {
   const searchParams = new URLSearchParams(url.search);
 
   const searchTerm = searchParams.get("searchTerm");
+  const category = searchParams.get("category") || "";
 
-  console.log(searchParams);
+  console.log(category);
 
   const page = parseInt(searchParams.get("page")) || 1;
 
@@ -24,20 +25,28 @@ export const GET = async (req) => {
     await connectToDB();
     const startIndex = (page - 1) * itemsPerPage;
     const productsCount = await Product.find({
-      $or: [
-        { title: { $regex: regexPart } },
-        { type: { $regex: regexCaseInsenstive } },
-        { category: { $regex: regexPart } },
-        { gender: { $regex: regexCaseInsenstive } },
+      $and: [
+        { category },
+        {
+          $or: [
+            { title: { $regex: regexPart } },
+            { type: { $regex: regexCaseInsenstive } },
+            { gender: { $regex: regexCaseInsenstive } },
+          ],
+        },
       ],
     }).countDocuments();
 
     const products = await Product.find({
-      $or: [
-        { title: { $regex: regexPart } },
-        { type: { $regex: regexCaseInsenstive } },
-        { category: { $regex: regexPart } },
-        { gender: { $regex: regexCaseInsenstive } },
+      $and: [
+        { category },
+        {
+          $or: [
+            { title: { $regex: regexPart } },
+            { type: { $regex: regexCaseInsenstive } },
+            { gender: { $regex: regexCaseInsenstive } },
+          ],
+        },
       ],
     })
       .skip(startIndex)
