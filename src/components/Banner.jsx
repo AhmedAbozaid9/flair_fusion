@@ -16,6 +16,7 @@ const Banner = () => {
         <button className="action_btn mt-3">Buy Now Today</button>
       </div>
       <Image
+        priority={true}
         src={"assets/banner_pic.svg"}
         alt="banner_image"
         width={300}

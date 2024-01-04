@@ -5,7 +5,7 @@ import { connectToDB } from "@utils/database";
 export const GET = async (_, { params }) => {
   try {
     connectToDB();
-    const cart = await UserCart.findOne({ client: params.id });
+    const cart = await UserCart.findOne({ client: params.id }).populate("");
     const products = await Promise.all(
       cart.cartItems.map(async (item) => {
         const product = await Product.findById(item.productId);

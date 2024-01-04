@@ -6,6 +6,7 @@ import ProductsList from "@components/products/ProductsList";
 
 const Page = ({ params }) => {
   const type = params.type;
+
   const [products, setProducts] = useState([]);
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(1);
@@ -13,7 +14,6 @@ const Page = ({ params }) => {
 
   useEffect(() => {
     (async () => {
-      setIsLoading(true);
       const { data } = await axios.get(`/api/${type}`, {
         params: { page },
       });

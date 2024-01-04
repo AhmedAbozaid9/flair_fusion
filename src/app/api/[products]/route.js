@@ -16,7 +16,10 @@ export const GET = async (req, { params }) => {
   try {
     await connectToDB();
     const startIndex = (page - 1) * itemsPerPage;
-    const productsCount = (await Product.find(type ? { type } : {})).length;
+    const productsCount = await Product.find(
+      type ? { type } : {}
+    ).countDocuments();
+    console.log(productsCount);
 
     const products = await Product.find(type ? { type } : {})
       .skip(startIndex)
