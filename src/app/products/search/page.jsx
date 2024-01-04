@@ -4,9 +4,13 @@ import axios from "axios";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
+import { categories } from "@constants/categories";
+import Filter from "@components/products/Filter";
+
 const page = () => {
   const searchParams = useSearchParams();
   const searchTerm = searchParams.get("searchTerm");
+  const category = searchParams.get("category");
 
   const [products, setProducts] = useState([]);
   const [count, setCount] = useState(0);
@@ -26,16 +30,18 @@ const page = () => {
       setProducts((prev) => [...prev, ...data.products]);
       setCount(data.productsCount);
     })();
-  }, [page, searchTerm]);
+  }, [page, searchTerm, category]);
 
-  console.log(products);
   return (
-    <ProductsList
-      products={products}
-      count={count}
-      isLoading={isLoading}
-      setPage={setPage}
-    />
+    <>
+      <Filter categories={categories} />
+      <ProductsList
+        products={products}
+        count={count}
+        isLoading={isLoading}
+        setPage={setPage}
+      />
+    </>
   );
 };
 
