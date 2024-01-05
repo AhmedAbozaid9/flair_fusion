@@ -11,8 +11,6 @@ export const GET = async (req) => {
   const searchTerm = searchParams.get("searchTerm");
   const category = searchParams.get("category") || "";
 
-  console.log(category);
-
   const page = parseInt(searchParams.get("page")) || 1;
 
   const regexCaseInsenstive = new RegExp(`^${searchTerm}$`, "i");
@@ -21,40 +19,43 @@ export const GET = async (req) => {
     "i"
   );
 
+  const query = {
+    $or: [
+      {
+        $and: [
+          {
+            $or: [
+              { category: { $eq: category } },
+              { category: { $exists: false } },
+              { category: "" },
+            ],
+          },
+          {
+            $or: [
+              { title: { $regex: regexPart } },
+              { type: { $regex: regexCaseInsenstive } },
+              { gender: { $regex: regexCaseInsenstive } },
+            ],
+          },
+        ],
+      },
+      {
+        category: { $exists: false },
+        $or: [
+          { title: { $regex: regexPart } },
+          { type: { $regex: regexCaseInsenstive } },
+          { gender: { $regex: regexCaseInsenstive } },
+        ],
+      },
+    ],
+  };
+
   try {
     await connectToDB();
     const startIndex = (page - 1) * itemsPerPage;
-    const productsCount = await Product.find({
-      $or: [
-        {
-          category,
-          $or: [
-            { title: { $regex: regexPart } },
-            { type: { $regex: regexCaseInsenstive } },
-            { gender: { $regex: regexCaseInsenstive } },
-          ],
-        },
-        {
-          category: "",
-        },
-      ],
-    }).countDocuments();
+    const productsCount = await Product.find(query).countDocuments();
 
-    const products = await Product.find({
-      $or: [
-        {
-          category,
-          $or: [
-            { title: { $regex: regexPart } },
-            { type: { $regex: regexCaseInsenstive } },
-            { gender: { $regex: regexCaseInsenstive } },
-          ],
-        },
-        {
-          category: "",
-        },
-      ],
-    })
+    const products = await Product.find(query)
       .skip(startIndex)
       .limit(itemsPerPage);
 

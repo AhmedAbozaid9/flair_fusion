@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 
 import WishlistButton from "@components/products/WishlistButton";
 import QuantityCounter from "./QuantityCounter";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 const CartItemCard = ({
   product,
@@ -74,7 +75,10 @@ const CartItemCard = ({
   };
   return (
     <div className="min-h-28 my-4 flex max-sm:flex-col sm:items-center sm:justify-between h-full">
-      <div className="h-full flex items-center gap-3 sm:gap-5">
+      <Link
+        href={`/${product._id}`}
+        className="h-full flex items-center gap-3 sm:gap-5"
+      >
         <div className="relative w-28 h-28 sm:w-36 sm:h-36">
           <Image
             src={product.images[0]}
@@ -89,7 +93,7 @@ const CartItemCard = ({
           <p className="text-gray-400 w-full">{product.category}</p>
           <p className="text-gray-400 w-full">{product.gender}</p>
         </div>
-      </div>
+      </Link>
       <div className="flex justify-between items-center mt-2">
         <QuantityCounter
           quantity={quantity}
