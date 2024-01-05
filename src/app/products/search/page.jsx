@@ -17,8 +17,6 @@ const page = () => {
   const [category, setCategory] = useState(searchParams.get("category") || "");
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(category);
-
   useEffect(() => {
     (async () => {
       const { data } = await axios.get("/api/search/", {
