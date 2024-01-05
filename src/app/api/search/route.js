@@ -25,27 +25,33 @@ export const GET = async (req) => {
     await connectToDB();
     const startIndex = (page - 1) * itemsPerPage;
     const productsCount = await Product.find({
-      $and: [
-        { category },
+      $or: [
         {
+          category,
           $or: [
             { title: { $regex: regexPart } },
             { type: { $regex: regexCaseInsenstive } },
             { gender: { $regex: regexCaseInsenstive } },
           ],
         },
+        {
+          category: "",
+        },
       ],
     }).countDocuments();
 
     const products = await Product.find({
-      $and: [
-        { category },
+      $or: [
         {
+          category,
           $or: [
             { title: { $regex: regexPart } },
             { type: { $regex: regexCaseInsenstive } },
             { gender: { $regex: regexCaseInsenstive } },
           ],
+        },
+        {
+          category: "",
         },
       ],
     })
