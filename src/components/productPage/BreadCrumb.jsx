@@ -16,7 +16,7 @@ const BreadCrumb = ({ gender, type, category }) => {
       </Link>
       <p>/</p>
       <Link
-        href={`/products/search?category=${category}`}
+        href={`/products/search?searchTerm=&category=${category}`}
         className="text-blue-950"
       >
         {category}
