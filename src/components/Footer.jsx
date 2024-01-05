@@ -10,7 +10,7 @@ const dancing_script = Dancing_Script({ weight: "400", subsets: ["latin"] });
 
 const Footer = () => {
   return (
-    <footer className="border-t border-t-gray-300 p-2 sm:p-4">
+    <footer className="absolute bottom-0 left-0 right-0 bg-white border-t border-t-gray-300 p-2 sm:p-4">
       <div className="flex gap-5 sm:flex-row flex-col items-center justify-around">
         <h1
           className={`whitespace-nowrap text-2xl ${dancing_script.className}`}
