@@ -19,43 +19,37 @@ export const GET = async (req) => {
     "i"
   );
 
-  const query = {
-    $or: [
-      {
+  const getQuery = () => {
+    if (category)
+      return {
         $and: [
-          {
-            $or: [
-              { category: { $eq: category } },
-              { category: { $exists: false } },
-              { category: "" },
-            ],
-          },
+          { category: { $regex: new RegExp(`^${category}$`, "i") } },
           {
             $or: [
               { title: { $regex: regexPart } },
               { type: { $regex: regexCaseInsenstive } },
               { gender: { $regex: regexCaseInsenstive } },
+              { desc: { $regex: regexPart } },
             ],
           },
         ],
-      },
-      {
-        category: { $exists: false },
-        $or: [
-          { title: { $regex: regexPart } },
-          { type: { $regex: regexCaseInsenstive } },
-          { gender: { $regex: regexCaseInsenstive } },
-        ],
-      },
-    ],
+      };
+    return {
+      $or: [
+        { title: { $regex: regexPart } },
+        { type: { $regex: regexCaseInsenstive } },
+        { gender: { $regex: regexCaseInsenstive } },
+        { desc: { $regex: regexPart } },
+      ],
+    };
   };
 
   try {
     await connectToDB();
     const startIndex = (page - 1) * itemsPerPage;
-    const productsCount = await Product.find(query).countDocuments();
+    const productsCount = await Product.find(getQuery()).countDocuments();
 
-    const products = await Product.find(query)
+    const products = await Product.find(getQuery())
       .skip(startIndex)
       .limit(itemsPerPage);
 
