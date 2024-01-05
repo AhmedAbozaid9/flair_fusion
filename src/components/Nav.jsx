@@ -54,7 +54,7 @@ const Nav = () => {
       className="sticky shadow-sm top-0 right-0 left-0 z-[999] border-b-1 bg-white"
     >
       {/*desktop nav*/}
-      <div className="w-full bg-white py-4 z-50 hidden md:flex justify-between flex-col sticky top-0 right-0 left-0">
+      <div className="w-full max-w-[1500px] bg-white py-4 z-50 hidden md:flex justify-between flex-col sticky top-0 right-0 left-0">
         <div className="flex justify-between items-center">
           <Link href="/" className="pr-4">
             <h1

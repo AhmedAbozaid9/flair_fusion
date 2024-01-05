@@ -1,6 +1,5 @@
 import "./globals.css";
 import Nav from "@/components/Nav";
-import Footer from "@components/Footer";
 import React from "react";
 import { Rubik } from "next/font/google";
 import { ToastContainer } from "react-toastify";
@@ -36,7 +35,6 @@ export default function RootLayout({ children }) {
               theme="light"
             />
           </main>
-          <Footer />
         </Provider>
       </body>
     </html>
