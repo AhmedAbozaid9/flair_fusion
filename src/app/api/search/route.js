@@ -52,7 +52,6 @@ export const GET = async (req) => {
     const products = await Product.find(getQuery())
       .skip(startIndex)
       .limit(itemsPerPage);
-
     return new Response(JSON.stringify({ products, productsCount }), {
       status: 200,
     });

@@ -13,6 +13,12 @@ const nextConfig = {
         port: "",
         pathname: "/*/**",
       },
+      {
+        protocol: "https",
+        hostname: "assets.adidas.com",
+        port: "",
+        pathname: "/*/**",
+      },
     ],
     domains: ["lh3.googleusercontent.com"],
   },

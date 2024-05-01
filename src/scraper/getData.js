@@ -10,6 +10,7 @@ require("events").EventEmitter.defaultMaxListeners = 30;
 const { Searches } = require("./searchLinks");
 
 let counter = 1;
+
 const getProductDataHM = async (link, category, type, gender) => {
   const browser = await puppeteer.launch({
     headless: "true",
@@ -97,3 +98,4 @@ try {
 } catch (err) {
   console.log(err);
 }
+
