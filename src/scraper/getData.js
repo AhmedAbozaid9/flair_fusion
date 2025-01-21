@@ -8,7 +8,6 @@ const { readFile, writeFile } = require("fs");
 require("events").EventEmitter.defaultMaxListeners = 30;
 
 const { Searches } = require("./searchLinks");
-
 let counter = 1;
 
 const getProductDataHM = async (link, category, type, gender) => {
@@ -98,4 +97,3 @@ try {
 } catch (err) {
   console.log(err);
 }
-

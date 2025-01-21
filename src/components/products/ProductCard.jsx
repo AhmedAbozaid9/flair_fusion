@@ -1,11 +1,13 @@
-import React from "react";
+import useToast from "@hooks/useToast";
+import axios from "axios";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
-import axios from "axios";
-import useToast from "@hooks/useToast";
+import React, { useState } from "react";
 
 function ProductCard({ title, price, images, _id }) {
+  const [imageError, setImageError] = useState(false);
+  console.log("imageError", imageError);
   const { data: session } = useSession();
   const { showToast } = useToast();
   const handleAddToCart = async () => {
@@ -26,7 +28,8 @@ function ProductCard({ title, price, images, _id }) {
       <Link href={"/" + _id} className="w-full">
         <div className="relative w-full h-48 sm:h-80">
           <Image
-            src={images[0]}
+            onErrorCapture={() => setImageError(true)}
+            src={imageError ? "/assets/productPlaceholder.png" : images[0]}
             fill={true}
             className="object-cover"
             alt={title}

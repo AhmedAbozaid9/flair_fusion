@@ -19,6 +19,12 @@ const nextConfig = {
         port: "",
         pathname: "/*/**",
       },
+      {
+        protocol: "https",
+        hostname: "www.dresscodeme.com",
+        port: "",
+        pathname: "/*/**",
+      },
     ],
     domains: ["lh3.googleusercontent.com"],
   },

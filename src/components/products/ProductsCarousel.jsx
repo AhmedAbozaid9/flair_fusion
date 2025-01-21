@@ -1,11 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/css";
-import ProductCard from "./ProductCard";
-import Link from "next/link";
 import axios from "axios";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import LoadingProductCards from "./LoadingProductCards";
+import ProductCard from "./ProductCard";
 
 const ProductsCarousel = ({ type }) => {
   const [products, setProducts] = useState([]);
@@ -14,6 +14,7 @@ const ProductsCarousel = ({ type }) => {
     (async () => {
       const { data } = await axios.get(`api/${type}`);
       setProducts(data.products);
+
       setIsLoading(false);
     })();
   }, []);
