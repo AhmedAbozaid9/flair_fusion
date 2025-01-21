@@ -1,10 +1,10 @@
 "use client";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import React, { useEffect, useState } from "react";
 
-import ProductGallery from "@components/productPage/ProductGallery";
 import BreadCrumb from "@components/productPage/BreadCrumb";
+import ProductGallery from "@components/productPage/ProductGallery";
 import WishlistButton from "@components/products/WishlistButton";
 import useToast from "@hooks/useToast";
 

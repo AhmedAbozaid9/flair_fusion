@@ -1,7 +1,8 @@
+import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 const ProductGallery = ({ images, transitionTime }) => {
+  const [imageError, setImageError] = useState(true);
   const [shownIndex, setShownIndex] = useState(0);
 
   useEffect(() => {
@@ -16,7 +17,9 @@ const ProductGallery = ({ images, transitionTime }) => {
       <AnimatePresence mode="wait" initial={false}>
         <motion.img
           key={shownIndex}
-          src={images[shownIndex]}
+          src={
+            imageError ? "/assets/productPlaceholder.png" : images[shownIndex]
+          }
           alt={`Product Image ${shownIndex + 1}`}
           className="w-full max-h-[620px] rounded-lg shadow-lg object-cover"
           initial={{ opacity: 0 }}
@@ -25,7 +28,7 @@ const ProductGallery = ({ images, transitionTime }) => {
         />
       </AnimatePresence>
       <div className="mt-3 w-full flex gap-3 justify-center flex-wrap">
-        {images.map((image, idx) => {
+        {/* {images.map((image, idx) => {
           const isActive = idx === shownIndex;
           return (
             <div key={idx} className="relative">
@@ -40,7 +43,7 @@ const ProductGallery = ({ images, transitionTime }) => {
               />
             </div>
           );
-        })}
+        })} */}
       </div>
     </div>
   );
