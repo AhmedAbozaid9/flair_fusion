@@ -1,11 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import React, { useEffect, useState } from "react";
 
 import CartItemCard from "@components/cart/CartItemCard";
+import CartLoadingItemCard from "@components/cart/CartLoadingItemCard";
 import EmptyCart from "@components/cart/EmptyCart";
 import axios from "axios";
-import CartLoadingItemCard from "@components/cart/CartLoadingItemCard";
 
 const Page = () => {
   const [products, setProducts] = useState([]);

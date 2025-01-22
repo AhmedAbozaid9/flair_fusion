@@ -1,0 +1,58 @@
+"use client";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/splide/css";
+import axios from "axios";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import LoadingProductCards from "./LoadingProductCards";
+import ProductCard from "./ProductCard";
+
+const Recommendations = ({ productId }) => {
+  const [products, setProducts] = useState([]);
+  console.log(products);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    (async () => {
+      const { data } = await axios.get(
+        `http://localhost:8000/recommendations/${productId}`
+      );
+      setProducts(data);
+
+      setIsLoading(false);
+    })();
+  }, [productId]);
+
+  return (
+    <div className="w-full mx-auto my-6 md:my-16">
+      <div className="flex justify-between items-center pb-3 mb-6 border-b-2">
+        <h3 className="text-xl sm:text-2xl font-bold text-blue-950">
+          Recommended products
+        </h3>
+      </div>
+      <Splide
+        options={{
+          autoWidth: true,
+          pagination: false,
+          type: "loop",
+          arrows: false,
+          autoplay: true,
+          interval: 3500,
+        }}
+      >
+        {isLoading ? (
+          <LoadingProductCards count={5} isCarousel={true} />
+        ) : (
+          products?.map((product) => (
+            <SplideSlide key={product._id}>
+              <div className="sm:px-4 px-2">
+                <ProductCard {...product} />
+              </div>
+            </SplideSlide>
+          ))
+        )}
+      </Splide>
+    </div>
+  );
+};
+
+export default Recommendations;

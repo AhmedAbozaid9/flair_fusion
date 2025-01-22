@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 
 import BreadCrumb from "@components/productPage/BreadCrumb";
 import ProductGallery from "@components/productPage/ProductGallery";
+import Recommendations from "@components/products/Recommendations";
 import WishlistButton from "@components/products/WishlistButton";
 import useToast from "@hooks/useToast";
 
@@ -75,6 +76,7 @@ const page = ({ params }) => {
           </div>
         </section>
       )}
+      <Recommendations productId={productId} />
     </>
   );
 };

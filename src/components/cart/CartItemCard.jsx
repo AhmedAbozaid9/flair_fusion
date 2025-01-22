@@ -1,11 +1,12 @@
-import React from "react";
+"use client";
 import Image from "next/image";
+import React, { useState } from "react";
 
 import WishlistButton from "@components/products/WishlistButton";
-import QuantityCounter from "./QuantityCounter";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import QuantityCounter from "./QuantityCounter";
 
 const CartItemCard = ({
   product,
@@ -14,6 +15,7 @@ const CartItemCard = ({
   setProducts,
   setPrice,
 }) => {
+  const [imageError, setImageError] = useState(false);
   const { data: session } = useSession();
 
   const handleAdd = async () => {
@@ -81,7 +83,8 @@ const CartItemCard = ({
       >
         <div className="relative w-28 h-28 sm:w-36 sm:h-36">
           <Image
-            src={product.images[0]}
+            onErrorCapture={() => setImageError(true)}
+            src={"/assets/productPlaceholder.png"}
             alt={product.title}
             fill={true}
             sizes="(max-width: 240px) (max-height: 320px)"

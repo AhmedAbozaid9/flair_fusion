@@ -29,7 +29,7 @@ function ProductCard({ title, price, images, _id }) {
         <div className="relative w-full h-48 sm:h-80">
           <Image
             onErrorCapture={() => setImageError(true)}
-            src={imageError ? "/assets/productPlaceholder.png" : images[0]}
+            src={"/assets/productPlaceholder.png"}
             fill={true}
             className="object-cover"
             alt={title}
