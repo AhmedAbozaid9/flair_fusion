@@ -9,6 +9,7 @@ import Recommendations from "@components/products/Recommendations";
 import WishlistButton from "@components/products/WishlistButton";
 import useToast from "@hooks/useToast";
 
+export const dynamic = "force-dynamic";
 const page = ({ params }) => {
   const { data: session } = useSession();
   const { showToast } = useToast();
